@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TosCompose</string>
+
+    <string name="template">Template</string>
+    <string name="banking">Banking</string>
+
+    <string name="general">General</string>
+    <string name="background">Background</string>
+    <string name="shape">Shape</string>
+
 </resources>
