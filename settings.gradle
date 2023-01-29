@@ -16,3 +16,4 @@ rootProject.name = "TosCompose"
 include ':app'
 include ':shape'
 include ':background'
+include ':brush'
