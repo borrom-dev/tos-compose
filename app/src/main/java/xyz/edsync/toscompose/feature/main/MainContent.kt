@@ -24,9 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.toscompose.R
-import xyz.edsync.toscompose.ui.theme.Orange
-import xyz.edsync.toscompose.ui.theme.Teal200
-import xyz.edsync.toscompose.ui.theme.TosComposeTheme
+import xyz.edsync.toscompose.feature.main.ui.theme.Orange
+import xyz.edsync.toscompose.feature.main.ui.theme.Teal200
+import xyz.edsync.toscompose.feature.main.ui.theme.TosComposeTheme
 import xyz.edsync.toscompose.util.extension.openUrl
 import xyz.edsync.toscompose.util.ui.DefaultText
 

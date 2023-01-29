@@ -29,6 +29,7 @@ fun DefaultText(
         fontWeight = fontWeight,
         fontStyle = fontStyle,
         style = style,
-        overflow = overflow
+        overflow = overflow,
+        maxLines = maxLines
     )
 }

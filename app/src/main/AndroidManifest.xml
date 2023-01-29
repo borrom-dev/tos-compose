@@ -12,11 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TosCompose"
         tools:targetApi="31">
+
         <activity
-            android:name=".feature.main.MainActivity"
+            android:name=".feature.banking.businessbanking.login.LoginActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.TosCompose">
+            android:label="@string/title_activity_splash"
+            android:theme="@style/Theme.BusinessBanking">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +28,31 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
         </activity>
+
+        <activity
+            android:name=".feature.banking.businessbanking.splash.SplashActivity"
+            android:exported="true"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/Theme.BusinessBanking" />
+
+        <activity
+            android:name=".feature.main.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TosCompose">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+
+            <!--            <meta-data-->
+            <!--                android:name="android.app.lib_name"-->
+            <!--                android:value="" />-->
+        </activity>
+
     </application>
 
 </manifest>

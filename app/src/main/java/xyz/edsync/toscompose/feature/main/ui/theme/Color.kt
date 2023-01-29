@@ -1,4 +1,4 @@
-package xyz.edsync.toscompose.ui.theme
+package xyz.edsync.toscompose.feature.main.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
