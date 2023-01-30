@@ -38,8 +38,7 @@ fun LoginContent() {
 
 @Composable
 fun TopBar() {
-    TopAppBar(
-        title = {},
+    TopAppBar(title = {},
         modifier = Modifier.fillMaxWidth(),
         elevation = 0.dp,
         backgroundColor = Color.White,
@@ -55,8 +54,7 @@ fun TopBar() {
         },
         actions = {
 
-        }
-    )
+        })
 }
 
 @Composable
@@ -74,6 +72,18 @@ fun Content() {
         )
         Spacer(modifier = Modifier.size(46.dp))
         LoginWithFacebookOrGoogle()
+        Spacer(modifier = Modifier.size(16.dp))
+        Button(modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .height(48.dp),
+            onClick = { }
+        ) {
+            DefaultText(
+                text = stringResource(id = R.string.btn_login),
+                style = TextStyle(color = Color.White)
+            )
+        }
     }
 }
 

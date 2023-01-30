@@ -10,5 +10,6 @@
     <string name="title_activity_splash">SplashActivity</string>
 
     <string name="title_welcome_login">Welcome Login</string>
+    <string name="btn_login">Login</string>
 
 </resources>
