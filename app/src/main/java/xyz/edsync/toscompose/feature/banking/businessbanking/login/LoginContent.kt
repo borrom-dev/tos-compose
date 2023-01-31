@@ -84,6 +84,21 @@ fun Content() {
                 style = TextStyle(color = Color.White)
             )
         }
+        Spacer(modifier = Modifier.size(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            DefaultText(
+                text = stringResource(id = R.string.text_dont_have_a_acount),
+                style = TextStyle(color = Color(0xFFD8D8D8))
+            )
+            Spacer(modifier = Modifier.size(4.dp))
+            DefaultText(
+                text = stringResource(id = R.string.text_sign_up),
+                style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.Bold)
+            )
+        }
     }
 }
 

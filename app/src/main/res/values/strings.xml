@@ -11,5 +11,7 @@
 
     <string name="title_welcome_login">Welcome Login</string>
     <string name="btn_login">Login</string>
+    <string name="text_dont_have_a_acount">Don\'t have a account?</string>
+    <string name="text_sign_up">Sign up</string>
 
 </resources>
