@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +23,8 @@ import xyz.edsync.toscompose.R
 import xyz.edsync.toscompose.feature.banking.businessbanking.ui.theme.BusinessBankingTheme
 import xyz.edsync.toscompose.feature.banking.businessbanking.ui.theme.ColorDarkPrimary
 import xyz.edsync.toscompose.util.ui.DefaultText
+import xyz.edsync.toscompose.util.ui.TextInputField
+import xyz.edsync.toscompose.util.ui.TextInputPassword
 
 @Composable
 fun LoginContent() {
@@ -59,6 +63,12 @@ fun TopBar() {
 
 @Composable
 fun Content() {
+    val username = remember {
+        mutableStateOf("")
+    }
+    val password = remember {
+        mutableStateOf("")
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -72,6 +82,16 @@ fun Content() {
         )
         Spacer(modifier = Modifier.size(46.dp))
         LoginWithFacebookOrGoogle()
+
+        Spacer(modifier = Modifier.size(24.dp))
+        TextInputField(
+            valueState = username,
+            labelText = stringResource(id = R.string.text_username)
+        )
+        TextInputPassword(
+            valueState = password,
+            labelText = stringResource(id = R.string.text_password)
+        )
         Spacer(modifier = Modifier.size(16.dp))
         Button(modifier = Modifier
             .fillMaxWidth()
