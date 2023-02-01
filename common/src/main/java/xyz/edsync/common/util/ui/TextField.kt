@@ -1,7 +1,5 @@
 package xyz.edsync.common.util.ui
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -18,9 +16,7 @@ import androidx.compose.ui.text.input.*
 
 @Composable
 fun TextInputField(
-    modifier: Modifier = Modifier
-        .fillMaxWidth()
-        .wrapContentHeight(),
+    modifier: Modifier = Modifier,
     valueState: MutableState<String>,
     labelText: String,
     maxLines: Int = 1,
@@ -57,18 +53,24 @@ fun TextInputField(
 
 @Composable
 fun TextInputPassword(
+    modifier: Modifier = Modifier,
     valueState: MutableState<String>,
     labelText: String,
     imeAction: ImeAction = ImeAction.Done,
-    maxLength: Int? = null
+    maxLength: Int? = null,
+    colors: TextFieldColors = TextFieldDefaults.textFieldColors(
+        backgroundColor = Color.Transparent
+    ),
 ) {
     val passwordVisible = rememberSaveable {
         mutableStateOf(false)
     }
     TextInputField(
+        modifier = modifier,
         maxLength = maxLength,
         valueState = valueState,
         labelText = labelText,
+        colors = colors,
         keyboardOptions = KeyboardOptions(
             imeAction = imeAction,
             keyboardType = KeyboardType.Password
