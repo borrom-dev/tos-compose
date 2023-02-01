@@ -14,7 +14,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/background" />
             <option value="$PROJECT_DIR$/brush" />
+            <option value="$PROJECT_DIR$/business-banking" />
             <option value="$PROJECT_DIR$/canvas" />
+            <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/shape" />
           </set>
         </option>

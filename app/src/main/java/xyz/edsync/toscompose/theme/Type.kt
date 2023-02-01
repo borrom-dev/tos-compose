@@ -1,4 +1,4 @@
-package xyz.edsync.toscompose.ui.theme
+package xyz.edsync.toscompose.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

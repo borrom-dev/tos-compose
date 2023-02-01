@@ -1,4 +1,4 @@
-package xyz.edsync.toscompose.util.extension
+package xyz.edsync.common.util.extension
 
 import android.content.Context
 import android.content.Intent

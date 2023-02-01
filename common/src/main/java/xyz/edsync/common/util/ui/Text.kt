@@ -1,4 +1,4 @@
-package xyz.edsync.toscompose.util.ui
+package xyz.edsync.common.util.ui
 
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
@@ -29,6 +29,7 @@ fun DefaultText(
         fontWeight = fontWeight,
         fontStyle = fontStyle,
         style = style,
-        overflow = overflow
+        overflow = overflow,
+        maxLines = maxLines
     )
 }
