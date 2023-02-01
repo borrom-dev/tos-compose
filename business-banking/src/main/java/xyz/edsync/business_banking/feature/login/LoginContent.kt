@@ -77,7 +77,7 @@ fun Content() {
             .background(color = Color.White)
     ) {
         TitleLogin()
-        Spacer(modifier = Modifier.size(46.dp))
+        Spacer(modifier = Modifier.size(56.dp))
         LoginWithFacebookOrGoogle()
 
         Spacer(modifier = Modifier.size(24.dp))
@@ -187,7 +187,7 @@ fun LoginWithFacebookOrGoogle() {
                 )
             }
         }
-        Spacer(modifier = Modifier.size(8.dp))
+        Spacer(modifier = Modifier.size(12.dp))
         Card(
             modifier = Modifier
                 .weight(1F)
