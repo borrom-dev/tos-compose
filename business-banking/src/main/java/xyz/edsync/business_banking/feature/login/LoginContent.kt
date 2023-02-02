@@ -4,14 +4,18 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -84,10 +88,49 @@ fun Content() {
         TextInputFieldForm(username, password)
 
         Spacer(modifier = Modifier.size(16.dp))
+        RememberMeAndForgotPassword()
+
+        Spacer(modifier = Modifier.size(64.dp))
         LoginButton()
 
         Spacer(modifier = Modifier.size(8.dp))
         SignupText()
+    }
+}
+
+@Composable
+private fun RememberMeAndForgotPassword() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(modifier = Modifier.wrapContentWidth()) {
+            Box(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(20.dp)
+                    .background(Color(0xFF77869E))
+                    .padding(1.dp)
+                    .clip(CircleShape)
+                    .background(Color.White),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(imageVector = Icons.Default.Check, contentDescription = "")
+            }
+            Spacer(modifier = Modifier.size(4.dp))
+            DefaultText(
+                text = stringResource(id = R.string.text_remember_me),
+                fontSize = 13.sp,
+                style = TextStyle(color = Color(0xFF77869E))
+            )
+        }
+        DefaultText(
+            text = stringResource(id = R.string.text_forgot_password),
+            fontSize = 13.sp,
+            style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.Bold)
+        )
     }
 }
 
