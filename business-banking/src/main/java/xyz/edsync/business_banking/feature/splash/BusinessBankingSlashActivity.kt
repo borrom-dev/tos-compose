@@ -1,5 +1,6 @@
 package xyz.edsync.business_banking.feature.splash
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,11 +15,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import xyz.edsync.business_banking.R
+import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
 
-class SplashActivity : ComponentActivity() {
+class BusinessBankingSlashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -26,7 +31,22 @@ class SplashActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize()) { SplashContent() }
             }
         }
+        lifecycleScope.launch {
+            delay(NEXT_SCREEN_DURATION)
+            gotoLoginScreen()
+        }
     }
+
+    private fun gotoLoginScreen() {
+        val intent = Intent(this, BusinessBankingLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    companion object {
+        private const val NEXT_SCREEN_DURATION = 500L
+    }
+
 }
 
 @Composable
