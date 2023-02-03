@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -24,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.common.util.extension.openUrl
+import xyz.edsync.common.util.listener.ItemClickListener
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.toscompose.R
 import xyz.edsync.toscompose.theme.Orange
@@ -31,41 +33,33 @@ import xyz.edsync.toscompose.theme.Teal200
 import xyz.edsync.toscompose.theme.TosComposeTheme
 
 @Composable
-fun MainContent() {
+fun MainContent(listener: ItemClickListener<Int>) {
     TosComposeTheme {
         val context: Context = LocalContext.current
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            topBar = { TopBar() },
-            floatingActionButton = {
-                FloatingButton { context.openUrl("https://github.com/borrom-dev/tos-compose") }
-            }
-        ) {
-            Body(menus = Menu.getItems())
+        Scaffold(modifier = Modifier.fillMaxSize(), topBar = { TopBar() }, floatingActionButton = {
+            FloatingButton { context.openUrl("https://github.com/borrom-dev/tos-compose") }
+        }) {
+            Body(menus = Menu.getItems(), listener = listener)
         }
     }
 }
 
 @Composable
 fun TopBar() {
-    TopAppBar(
-        title = {
-            DefaultText(
-                text = stringResource(id = R.string.app_name),
-                fontSize = 20.sp,
-                style = TextStyle(
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                )
+    TopAppBar(title = {
+        DefaultText(
+            text = stringResource(id = R.string.app_name), fontSize = 20.sp, style = TextStyle(
+                color = Color.Black,
+                fontWeight = FontWeight.Bold,
             )
-        },
+        )
+    },
         modifier = Modifier.fillMaxWidth(),
         elevation = 0.dp,
         backgroundColor = Teal200,
         actions = {
 
-        }
-    )
+        })
 }
 
 @Composable
@@ -82,14 +76,18 @@ fun FloatingButton(onFloatingActionClick: () -> Unit) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Body(menus: MutableList<Menu>) {
+fun Body(menus: MutableList<Menu>, listener: ItemClickListener<Int>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         menus.forEach { item ->
             stickyHeader { Header(title = item.title) }
             itemsIndexed(item.sampleNames) { index: Int, sampleName: Int ->
-                BodyItem(sampleName = sampleName, isLastItem = index == item.sampleNames.size - 1)
+                BodyItem(
+                    sampleName = sampleName,
+                    isLastItem = index == item.sampleNames.size - 1,
+                    listener
+                )
             }
         }
     }
@@ -112,12 +110,13 @@ fun Header(@StringRes title: Int) {
 }
 
 @Composable
-fun BodyItem(@StringRes sampleName: Int, isLastItem: Boolean = false) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Orange)
-    ) {
+fun BodyItem(
+    @StringRes sampleName: Int, isLastItem: Boolean = false, listener: ItemClickListener<Int>
+) {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .background(Orange)
+        .clickable { listener.onItemClicked(sampleName) }) {
         DefaultText(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
             text = stringResource(id = sampleName),
@@ -126,9 +125,7 @@ fun BodyItem(@StringRes sampleName: Int, isLastItem: Boolean = false) {
         )
         if (!isLastItem) {
             Divider(
-                Modifier.padding(start = 16.dp),
-                color = Color.Black,
-                thickness = 0.5.dp
+                Modifier.padding(start = 16.dp), color = Color.Black, thickness = 0.5.dp
             )
         }
     }
@@ -138,7 +135,11 @@ fun BodyItem(@StringRes sampleName: Int, isLastItem: Boolean = false) {
 @Composable
 fun MainContentPReview() {
     TosComposeTheme {
-        MainContent()
+        MainContent(listener = object : ItemClickListener<Int> {
+            override fun onItemClicked(item: Int) {
+                // no implementation
+            }
+        })
     }
 }
 
