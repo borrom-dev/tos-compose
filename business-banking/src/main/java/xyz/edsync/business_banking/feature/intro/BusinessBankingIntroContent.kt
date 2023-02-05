@@ -1,5 +1,7 @@
 package xyz.edsync.business_banking.feature.intro
 
+import android.content.Context
+import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import xyz.edsync.business_banking.R
+import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.common.util.ui.DefaultText
 
@@ -63,13 +66,14 @@ private fun Content() {
 
 @Composable
 private fun Buttons() {
+    val context = LocalContext.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Button(modifier = Modifier.weight(1F), onClick = { }) {
+        Button(modifier = Modifier.weight(1F), onClick = { gotoLoginScreen(context) }) {
             DefaultText(
                 text = stringResource(id = R.string.btn_login),
                 style = TextStyle(color = Color.White)
@@ -83,4 +87,9 @@ private fun Buttons() {
             )
         }
     }
+}
+
+private fun gotoLoginScreen(context: Context) {
+    val intent = Intent(context, BusinessBankingLoginActivity::class.java)
+    context.startActivity(intent)
 }
