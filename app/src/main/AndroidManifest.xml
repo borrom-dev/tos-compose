@@ -20,6 +20,12 @@
             android:theme="@style/Theme.BusinessBanking" />
 
         <activity
+            android:name="xyz.edsync.business_banking.feature.intro.BusinessBankingIntroActivity"
+            android:exported="false"
+            android:label=""
+            android:theme="@style/Theme.BusinessBanking" />
+
+        <activity
             android:name="xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity"
             android:exported="true"
             android:label=""

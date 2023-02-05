@@ -47,7 +47,7 @@ fun LoginContent() {
 }
 
 @Composable
-fun TopBar() {
+private fun TopBar() {
     TopAppBar(title = {},
         modifier = Modifier.fillMaxWidth(),
         elevation = 0.dp,
