@@ -19,6 +19,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import xyz.edsync.business_banking.R
+import xyz.edsync.business_banking.feature.intro.BusinessBankingIntroActivity
+import xyz.edsync.business_banking.feature.intro.BusinessBankingIntroContent
 import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
@@ -38,7 +40,7 @@ class BusinessBankingSlashActivity : ComponentActivity() {
     }
 
     private fun gotoLoginScreen() {
-        val intent = Intent(this, BusinessBankingLoginActivity::class.java)
+        val intent = Intent(this, BusinessBankingIntroActivity::class.java)
         startActivity(intent)
         finish()
     }

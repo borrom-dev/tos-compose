@@ -10,4 +10,6 @@
     <string name="text_password">Password</string>
     <string name="text_remember_me">Remember me</string>
     <string name="text_forgot_password">Forgot password?</string>
+    <string name="text_skip">Skip</string>
+    <string name="text_login">Login</string>
 </resources>
