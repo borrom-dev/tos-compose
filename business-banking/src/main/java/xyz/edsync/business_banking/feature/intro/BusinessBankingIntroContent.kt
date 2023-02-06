@@ -3,20 +3,30 @@ package xyz.edsync.business_banking.feature.intro
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
 import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
+import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
 import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
@@ -55,20 +65,82 @@ private fun TopBar() {
 
 @Composable
 private fun Content() {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        Buttons()
+        SlideIntro()
+        Buttons(modifier = Modifier.align(Alignment.BottomCenter))
+    }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+private fun SlideIntro() {
+// Display 10 items
+    HorizontalPager(modifier = Modifier.fillMaxSize(), count = 10) { page ->
+        SlideContent()
     }
 }
 
 @Composable
-private fun Buttons() {
+private fun SlideContent() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Image(
+            modifier = Modifier
+                .padding(start = 25.dp),
+            painter = painterResource(id = R.drawable.ic_iphone_x_blue),
+            contentDescription = ""
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .padding(vertical = 8.dp)
+                .background(
+                    color = Color.White,
+                    shape = RoundedCornerShape(topEnd = 20.dp, topStart = 20.dp)
+                )
+                .align(Alignment.BottomCenter),
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                DefaultText(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = stringResource(id = R.string.text_intro_title),
+                    style = TextStyle(
+                        textAlign = TextAlign.Center,
+                        color = ColorDarkPrimary,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                )
+                Spacer(modifier = Modifier.size(4.dp))
+                DefaultText(
+                    text = stringResource(id = R.string.text_desc_intro),
+                    style = TextStyle(
+                        color = Color(0xFF77869E),
+                        textAlign = TextAlign.Center
+                    ),
+                    fontSize = 13.sp
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun Buttons(modifier: Modifier) {
     val context = LocalContext.current
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
