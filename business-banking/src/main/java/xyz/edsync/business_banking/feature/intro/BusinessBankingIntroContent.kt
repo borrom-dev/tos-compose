@@ -23,11 +23,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
+import com.google.accompanist.pager.rememberPagerState
 import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
 import xyz.edsync.common.util.ui.DefaultText
+import xyz.edsync.common.util.ui.DotsIndicator
 
 @Composable
 fun BusinessBankingIntroContent() {
@@ -63,23 +66,37 @@ private fun TopBar() {
         })
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun Content() {
+    val pagerState = rememberPagerState()
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        SlideIntro()
-        Buttons(modifier = Modifier.align(Alignment.BottomCenter))
+        SlideIntro(pagerState)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            DotsIndicator(
+                totalDots = 6,
+                selectedIndex = pagerState.currentPage,
+                selectedColor = Color(0xFF042C5C),
+                unSelectedColor = Color(0xFF77869E)
+            )
+            Buttons()
+        }
     }
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun SlideIntro() {
-// Display 10 items
-    HorizontalPager(modifier = Modifier.fillMaxSize(), count = 10) { page ->
+private fun SlideIntro(pagerState: PagerState) {
+    HorizontalPager(modifier = Modifier.fillMaxSize(), count = 6, state = pagerState) {
         SlideContent()
     }
 }
@@ -99,7 +116,7 @@ private fun SlideContent() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp)
+                .height(180.dp)
                 .padding(vertical = 8.dp)
                 .background(
                     color = Color.White,
@@ -137,7 +154,7 @@ private fun SlideContent() {
 }
 
 @Composable
-private fun Buttons(modifier: Modifier) {
+private fun Buttons(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     Row(
         modifier = modifier
