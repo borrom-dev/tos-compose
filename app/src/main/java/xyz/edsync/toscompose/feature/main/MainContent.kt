@@ -131,9 +131,11 @@ fun BodyItem(
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
-fun MainContentPReview() {
+fun MainContentPreview() {
     TosComposeTheme {
         MainContent(listener = object : ItemClickListener<Int> {
             override fun onItemClicked(item: Int) {

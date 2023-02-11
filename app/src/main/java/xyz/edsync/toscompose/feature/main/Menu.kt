@@ -20,6 +20,7 @@ data class Menu(
                 title = R.string.template,
                 sampleNames = mutableListOf<Int>().apply {
                     add(R.string.banking)
+                    add(R.string.apple_watch_menu)
                 }
             )
         }
