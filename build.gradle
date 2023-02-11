@@ -1,8 +1,60 @@
 buildscript {
     ext {
-        compose_ui_version = '1.1.1'
+        composeUiVersion = '1.1.1'
+
+        // App version
+        versionName = '1.0.1'
+        versionCode = 1
+        // SDK and tools
+        compileSdkVersion = 33
+        minSdkVersion = 21
+        targetSdkVersion = 33
+
+        kotlinVersion = '1.6.10'
+
+        coreKtxVersion = '1.7.0'
+        lifecycleRuntimeKtxVersion = "2.3.1"
+
+        activityComposeVersion = "1.3.1"
+
+        composeMaterialVersion = "1.1.1"
+
+        coreKtxDep = "androidx.core:core-ktx:$coreKtxVersion"
+        lifecycleRuntimeKtxDep = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtxVersion"
+
+        activityComposeDep = "androidx.activity:activity-compose:$activityComposeVersion"
+
+        // Test
+        junitVersion = "4.13.2"
+        junitTestExtVersion = "1.1.5"
+        testExpressoCoreVersion = "3.5.1"
+
+        appcompatVersion = "1.6.0"
+        materialVersion = "1.7.0"
+
+        accompanistPagerVersion = "0.28.0"
+
+        composeUiDep = "androidx.compose.ui:ui:$composeUiVersion"
+        composeUiPreviewDep = "androidx.compose.ui:ui-tooling-preview:$composeUiVersion"
+        composeMaterialIconsDep = "androidx.compose.material:material-icons-extended:$composeUiVersion"
+        composeMertialDep = "androidx.compose.material:material:$composeMaterialVersion"
+        composeUiTestDep = "androidx.compose.ui:ui-test-junit4:$composeUiVersion"
+        composeUiToolDep = "androidx.compose.ui:ui-tooling:$composeUiVersion"
+        composeUiTestManifestDep = "androidx.compose.ui:ui-test-manifest:$composeUiVersion"
+
+        junitDep = "junit:junit:$junitVersion"
+        junitTestExtDep = "androidx.test.ext:junit:$junitTestExtVersion"
+        testExpressoCoreDep = "androidx.test.espresso:espresso-core:$testExpressoCoreVersion"
+
+        appcompatDep = "androidx.appcompat:appcompat:$appcompatVersion"
+        materialDep = "com.google.android.material:material:$materialVersion"
+
+        accompanistPagerDep = "com.google.accompanist:accompanist-pager:$accompanistPagerVersion"
+
     }
+
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 plugins {
     id 'com.android.application' version '7.3.1' apply false
     id 'com.android.library' version '7.3.1' apply false
