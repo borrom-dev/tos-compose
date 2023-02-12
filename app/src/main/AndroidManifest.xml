@@ -20,6 +20,12 @@
             android:theme="@style/Theme.TosCompose" />
 
         <activity
+            android:name="xyz.edsync.business_banking.feature.yourbudget.YourBudgetActivity"
+            android:exported="false"
+            android:label=""
+            android:theme="@style/Theme.BusinessBanking" />
+
+        <activity
             android:name="xyz.edsync.business_banking.feature.splash.BusinessBankingSlashActivity"
             android:exported="false"
             android:label=""
