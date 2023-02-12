@@ -13,5 +13,8 @@
     <string name="text_skip">Skip</string>
     <string name="text_login">Login</string>
     <string name="text_intro_title">In hac habitasse platea dictumst.</string>
-    <string name="text_desc_intro">Donec facilisis tortor ut augue lacinia, at viverra est semper. </string>
+    <string name="text_desc_intro">Donec facilisis tortor ut augue lacinia, at viverra est semper. </string>'
+    <string name="title_your_budget">Your Budget</string>
+    <string name="text_axess_platinum_card">for Axess Platinum Card</string>
+    <string name="text_add_budget">Add Budget</string>
 </resources>
