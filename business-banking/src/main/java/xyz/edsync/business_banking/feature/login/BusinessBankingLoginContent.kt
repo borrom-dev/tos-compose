@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -155,9 +154,8 @@ private fun LoginButton() {
     Button(modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 16.dp)
-        .clickable { gotoYourBudgetScreen(context) }
         .height(48.dp),
-        onClick = { }
+        onClick = { gotoYourBudgetScreen(context) }
     ) {
         DefaultText(
             text = stringResource(id = R.string.btn_login),
@@ -267,7 +265,7 @@ private fun gotoYourBudgetScreen(context: Context) {
     context.startActivity(intent)
 }
 
-@Preview()
+@Preview
 @Composable
 fun PreviewLoginScreen() {
     LoginContent()
