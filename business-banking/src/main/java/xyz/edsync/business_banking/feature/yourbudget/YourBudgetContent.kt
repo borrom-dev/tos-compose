@@ -2,8 +2,10 @@ package xyz.edsync.business_banking.feature.yourbudget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -91,6 +93,69 @@ private fun Content() {
                         text = stringResource(id = R.string.text_add_budget),
                         style = TextStyle(color = ColorPrimary)
                     )
+                }
+            }
+        }
+        Spacer(modifier = Modifier.size(24.dp))
+        SendMoneyAndCalculation()
+    }
+}
+
+@Composable
+private fun SendMoneyAndCalculation() {
+    val colorBackground = Color(0xFFDFE7F5)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.SpaceAround
+    ) {
+        Card(
+            modifier = Modifier
+                .weight(1F)
+                .height(48.dp),
+            backgroundColor = colorBackground,
+            elevation = 0.dp,
+            shape = RoundedCornerShape(6.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.Start
+            ) {
+                Row {
+                    Spacer(modifier = Modifier.size(16.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_send_money),
+                        contentDescription = "Icon Facebook"
+                    )
+                    Spacer(modifier = Modifier.size(12.dp))
+                    DefaultText(text = "Send Money", style = TextStyle(color = ColorPrimary))
+                }
+            }
+        }
+        Spacer(modifier = Modifier.size(12.dp))
+        Card(
+            modifier = Modifier
+                .weight(1F)
+                .height(48.dp),
+            backgroundColor = colorBackground,
+            elevation = 0.dp,
+            shape = RoundedCornerShape(6.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.Start
+            ) {
+                Row {
+                    Spacer(modifier = Modifier.size(16.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_calculation),
+                        contentDescription = "Icon Google"
+                    )
+                    Spacer(modifier = Modifier.size(12.dp))
+                    DefaultText(text = "Calculation", style = TextStyle(color = ColorPrimary))
                 }
             }
         }
