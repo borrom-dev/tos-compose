@@ -8,7 +8,11 @@ class BusinessBankingLoginActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { LoginContent() }
+        setContent {
+            LoginContent {
+                finish()
+            }
+        }
     }
 
 }

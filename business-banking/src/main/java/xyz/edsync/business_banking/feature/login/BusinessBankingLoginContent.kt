@@ -37,12 +37,12 @@ import xyz.edsync.common.util.ui.TextInputField
 import xyz.edsync.common.util.ui.TextInputPassword
 
 @Composable
-fun LoginContent() {
+fun LoginContent(onBackPressed: () -> Unit) {
     BusinessBankingTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
-                topBar = { TopBar() },
+                topBar = { TopBar(onBackPressed) },
             ) {
                 Content()
             }
@@ -51,15 +51,13 @@ fun LoginContent() {
 }
 
 @Composable
-private fun TopBar() {
+private fun TopBar(onBackPressed: () -> Unit) {
     TopAppBar(title = {},
         modifier = Modifier.fillMaxWidth(),
         elevation = 0.dp,
         backgroundColor = Color.White,
         navigationIcon = {
-            IconButton(
-                onClick = {},
-            ) {
+            IconButton(onClick = onBackPressed) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_back),
                     contentDescription = "Icon back"
@@ -268,5 +266,7 @@ private fun gotoYourBudgetScreen(context: Context) {
 @Preview
 @Composable
 fun PreviewLoginScreen() {
-    LoginContent()
+    LoginContent {
+
+    }
 }
