@@ -22,18 +22,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
-import xyz.edsync.business_banking.ui.theme.ColorBackground
-import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
-import xyz.edsync.business_banking.ui.theme.ColorPrimary
+import xyz.edsync.business_banking.ui.theme.*
 import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
 fun YourBudgetContent() {
     BusinessBankingTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Surface(modifier = Modifier.fillMaxSize()) {
             Box {
                 Column(modifier = Modifier.fillMaxSize()) {
                     Image(
@@ -100,7 +95,7 @@ private fun Content() {
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Row(
@@ -117,7 +112,7 @@ private fun Content() {
                         style = TextStyle(color = ColorPrimary)
                     )
                 }
-                Spacer(modifier = Modifier.size(24.dp))
+                Spacer(modifier = Modifier.size(32.dp))
                 ChartProgress()
             }
         }
@@ -190,12 +185,6 @@ private fun SendMoneyAndCalculation() {
 @Composable
 fun ChartProgress(
     data: Float = 20f,
-    dataTextStyle: TextStyle = TextStyle(
-        fontSize = MaterialTheme.typography.h3.fontSize
-    ),
-    remainingTextStyle: TextStyle = TextStyle(
-        fontSize = 16.sp
-    ),
     size: Dp = 250.dp,
     thickness: Dp = 16.dp,
     animationDuration: Int = 1000,
@@ -204,22 +193,13 @@ fun ChartProgress(
     startAngle: Float = 150f,
     dataPlanLimit: Float = 100F
 ) {
-    // It remembers the number value
     var dataR by remember { mutableStateOf(-1f) }
-
     val gapBetweenEnds = (startAngle - 90) * 2
-
-    // Number Animation
     val animateNumber = animateFloatAsState(
         targetValue = dataR,
         animationSpec = tween(durationMillis = animationDuration)
     )
-
-    // This is to start the animation when the activity is opened
-    LaunchedEffect(Unit) {
-        dataR = data
-    }
-
+    LaunchedEffect(Unit) { dataR = data }
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -240,6 +220,35 @@ fun ChartProgress(
                     sweepAngle = sweepAngle,
                     useCenter = false,
                     style = Stroke(thickness.toPx(), cap = StrokeCap.Round)
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(vertical = 56.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_chart_card),
+                    contentDescription = "Chart Card"
+                )
+                Spacer(modifier = Modifier.size(16.dp))
+                DefaultText(
+                    text = stringResource(id = R.string.text_your_are_spent),
+                    style = TextStyle(color = ColorSecondaryText),
+                    fontSize = 13.sp
+                )
+                Spacer(modifier = Modifier.size(4.dp))
+                DefaultText(
+                    text = "$6,390",
+                    style = TextStyle(color = ColorMainText, fontWeight = FontWeight.Bold),
+                    fontSize = 30.sp
+                )
+                Spacer(modifier = Modifier.size(4.dp))
+                DefaultText(
+                    text = "of $3,248",
+                    style = TextStyle(color = ColorSecondaryText),
+                    fontSize = 13.sp
                 )
             }
         }
