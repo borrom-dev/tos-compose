@@ -2,7 +2,6 @@ package xyz.edsync.business_banking.feature.intro
 
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,12 +32,12 @@ import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.DotsIndicator
 
 @Composable
-fun BusinessBankingIntroContent() {
+fun BusinessBankingIntroContent(onSkipPressed: () -> Unit) {
     BusinessBankingTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
-                topBar = { TopBar() },
+                topBar = { TopBar(onSkipPressed) },
             ) {
                 Content()
             }
@@ -47,8 +46,7 @@ fun BusinessBankingIntroContent() {
 }
 
 @Composable
-private fun TopBar() {
-    val context = LocalContext.current
+private fun TopBar(onSkipPressed: () -> Unit) {
     TopAppBar(title = {},
         modifier = Modifier.fillMaxWidth(),
         elevation = 0.dp,
@@ -58,9 +56,7 @@ private fun TopBar() {
                 modifier = Modifier
                     .padding(16.dp)
                     .clickable {
-                        Toast
-                            .makeText(context, "SKIP CLICKED", Toast.LENGTH_SHORT)
-                            .show()
+                        onSkipPressed()
                     }, text = stringResource(id = R.string.text_skip), style = TextStyle(Color.Gray)
             )
         })

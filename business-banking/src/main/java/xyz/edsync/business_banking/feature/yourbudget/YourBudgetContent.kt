@@ -1,37 +1,49 @@
 package xyz.edsync.business_banking.feature.yourbudget
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
-import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
-import xyz.edsync.business_banking.ui.theme.ColorPrimary
+import xyz.edsync.business_banking.ui.theme.*
 import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
 fun YourBudgetContent() {
     BusinessBankingTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Surface(modifier = Modifier.fillMaxSize()) {
             Box {
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = painterResource(R.drawable.bg_your_budget),
-                    contentDescription = "backgroundImage",
-                )
+                Column(modifier = Modifier.fillMaxSize()) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = ColorBackground),
+                        painter = painterResource(R.drawable.bg_your_budget),
+                        contentDescription = "backgroundImage",
+                    )
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(color = ColorBackground)
+                    )
+                }
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = { TopBar() },
@@ -68,17 +80,23 @@ private fun TopBar() {
 
 @Composable
 private fun Content() {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Spacer(modifier = Modifier.size(8.dp))
         Card(
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            backgroundColor = Color.White
+            backgroundColor = Color.White,
+            shape = RoundedCornerShape(16.dp)
         ) {
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Row(
                     modifier = Modifier
@@ -94,6 +112,8 @@ private fun Content() {
                         style = TextStyle(color = ColorPrimary)
                     )
                 }
+                Spacer(modifier = Modifier.size(32.dp))
+                ChartProgress()
             }
         }
         Spacer(modifier = Modifier.size(24.dp))
@@ -160,4 +180,98 @@ private fun SendMoneyAndCalculation() {
             }
         }
     }
+}
+
+@Composable
+fun ChartProgress(
+    data: Float = 20f,
+    size: Dp = 250.dp,
+    thickness: Dp = 16.dp,
+    animationDuration: Int = 1000,
+    foregroundIndicatorColor: Color = ColorPrimary,
+    backgroundIndicatorColor: Color = Color(0xFFDFE7F5),
+    startAngle: Float = 150f,
+    dataPlanLimit: Float = 100F
+) {
+    var dataR by remember { mutableStateOf(-1f) }
+    val gapBetweenEnds = (startAngle - 90) * 2
+    val animateNumber = animateFloatAsState(
+        targetValue = dataR,
+        animationSpec = tween(durationMillis = animationDuration)
+    )
+    LaunchedEffect(Unit) { dataR = data }
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(modifier = Modifier.size(size)) {
+            Canvas(modifier = Modifier.size(size = size)) {
+                drawArc(
+                    color = backgroundIndicatorColor,
+                    startAngle = startAngle,
+                    sweepAngle = 360f - gapBetweenEnds,
+                    useCenter = false,
+                    style = Stroke(width = thickness.toPx(), cap = StrokeCap.Round)
+                )
+                val sweepAngle = (animateNumber.value / dataPlanLimit) * (360f - gapBetweenEnds)
+                drawArc(
+                    color = foregroundIndicatorColor,
+                    startAngle = startAngle,
+                    sweepAngle = sweepAngle,
+                    useCenter = false,
+                    style = Stroke(thickness.toPx(), cap = StrokeCap.Round)
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(vertical = 56.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_chart_card),
+                    contentDescription = "Chart Card"
+                )
+                Spacer(modifier = Modifier.size(16.dp))
+                DefaultText(
+                    text = stringResource(id = R.string.text_your_are_spent),
+                    style = TextStyle(color = ColorSecondaryText),
+                    fontSize = 13.sp
+                )
+                Spacer(modifier = Modifier.size(4.dp))
+                DefaultText(
+                    text = "$6,390",
+                    style = TextStyle(color = ColorMainText, fontWeight = FontWeight.Bold),
+                    fontSize = 30.sp
+                )
+                Spacer(modifier = Modifier.size(4.dp))
+                DefaultText(
+                    text = "of $3,248",
+                    style = TextStyle(color = ColorSecondaryText),
+                    fontSize = 13.sp
+                )
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+                .offset(y = (-50).dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            val color = Color(0xFF77869E)
+            DefaultText(
+                modifier = Modifier.padding(start = 20.dp),
+                text = "0%",
+                style = TextStyle(color = color)
+            )
+            DefaultText(
+                text = "100%",
+                style = TextStyle(color = color)
+            )
+        }
+
+    }
+
 }
