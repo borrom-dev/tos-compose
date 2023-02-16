@@ -21,6 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
 import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.ui.theme.*
 import xyz.edsync.common.util.ui.DefaultText
@@ -78,6 +80,7 @@ private fun TopBar() {
         })
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun Content() {
     Column(
@@ -85,35 +88,37 @@ private fun Content() {
             .fillMaxSize()
     ) {
         Spacer(modifier = Modifier.size(8.dp))
-        Card(
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            backgroundColor = Color.White,
-            shape = RoundedCornerShape(16.dp)
-        ) {
-            Column(
+        HorizontalPager(count = 3) {
+            Card(
                 Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(horizontal = 16.dp),
+                backgroundColor = Color.White,
+                shape = RoundedCornerShape(16.dp)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    DefaultText(
-                        text = stringResource(id = R.string.text_axess_platinum_card),
-                        style = TextStyle(color = ColorDarkPrimary)
-                    )
-                    DefaultText(
-                        text = stringResource(id = R.string.text_add_budget),
-                        style = TextStyle(color = ColorPrimary)
-                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        DefaultText(
+                            text = stringResource(id = R.string.text_axess_platinum_card),
+                            style = TextStyle(color = ColorDarkPrimary)
+                        )
+                        DefaultText(
+                            text = stringResource(id = R.string.text_add_budget),
+                            style = TextStyle(color = ColorPrimary)
+                        )
+                    }
+                    Spacer(modifier = Modifier.size(32.dp))
+                    ChartProgress()
                 }
-                Spacer(modifier = Modifier.size(32.dp))
-                ChartProgress()
             }
         }
         Spacer(modifier = Modifier.size(24.dp))
