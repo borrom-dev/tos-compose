@@ -23,9 +23,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
+import com.google.accompanist.pager.rememberPagerState
 import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.ui.theme.*
 import xyz.edsync.common.util.ui.DefaultText
+import xyz.edsync.common.util.ui.DotsIndicator
 
 @Composable
 fun YourBudgetContent() {
@@ -83,47 +86,74 @@ private fun TopBar() {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun Content() {
+    val pagerState = rememberPagerState(0)
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
         Spacer(modifier = Modifier.size(8.dp))
-        HorizontalPager(count = 3) {
-            Card(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                backgroundColor = Color.White,
-                shape = RoundedCornerShape(16.dp)
-            ) {
-                Column(
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        DefaultText(
-                            text = stringResource(id = R.string.text_axess_platinum_card),
-                            style = TextStyle(color = ColorDarkPrimary)
-                        )
-                        DefaultText(
-                            text = stringResource(id = R.string.text_add_budget),
-                            style = TextStyle(color = ColorPrimary)
-                        )
-                    }
-                    Spacer(modifier = Modifier.size(32.dp))
-                    ChartProgress()
-                }
-            }
-        }
+        ChartCard(pagerState)
         Spacer(modifier = Modifier.size(24.dp))
         SendMoneyAndCalculation()
     }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+private fun ChartCard(pagerState: PagerState) {
+    Card(
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        backgroundColor = Color.White,
+        shape = RoundedCornerShape(16.dp)
+    ) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TitleChart()
+            Spacer(modifier = Modifier.size(32.dp))
+            ChartSlide(pagerState)
+        }
+    }
+}
+
+@Composable
+private fun TitleChart() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        DefaultText(
+            text = stringResource(id = R.string.text_axess_platinum_card),
+            style = TextStyle(color = ColorDarkPrimary)
+        )
+        DefaultText(
+            text = stringResource(id = R.string.text_add_budget),
+            style = TextStyle(color = ColorPrimary)
+        )
+    }
+}
+
+@Composable
+@OptIn(ExperimentalPagerApi::class)
+private fun ChartSlide(pagerState: PagerState) {
+    HorizontalPager(count = 3, state = pagerState) {
+        ChartProgress()
+    }
+    DotsIndicator(
+        modifier = Modifier.offset(y = (-12).dp),
+        totalDots = 3,
+        selectedIndex = pagerState.currentPage,
+        selectedColor = ColorPrimary,
+        unSelectedColor = Color(0xFFE6ECF0),
+        dotShape = RoundedCornerShape(4.dp),
+        dotModifier = Modifier.size(width = 16.dp, height = 4.dp)
+    )
 }
 
 @Composable
