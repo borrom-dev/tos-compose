@@ -36,13 +36,7 @@ fun YourBudgetContent() {
         Surface(modifier = Modifier.fillMaxSize()) {
             Box {
                 Column(modifier = Modifier.fillMaxSize()) {
-                    Image(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(color = ColorBackground),
-                        painter = painterResource(R.drawable.bg_your_budget),
-                        contentDescription = "backgroundImage",
-                    )
+                    BackgroundImage()
                     Spacer(
                         modifier = Modifier
                             .fillMaxSize()
@@ -59,6 +53,17 @@ fun YourBudgetContent() {
             }
         }
     }
+}
+
+@Composable
+private fun BackgroundImage() {
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = ColorBackground),
+        painter = painterResource(R.drawable.bg_your_budget),
+        contentDescription = "backgroundImage",
+    )
 }
 
 @Composable
@@ -90,21 +95,49 @@ private fun Content() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(horizontal = 16.dp)
     ) {
         Spacer(modifier = Modifier.size(8.dp))
         ChartCard(pagerState)
         Spacer(modifier = Modifier.size(24.dp))
         SendMoneyAndCalculation()
+        Spacer(modifier = Modifier.size(16.dp))
+        TransactionContent()
+    }
+}
+
+@Composable
+private fun TransactionContent() {
+    val items = arrayOf("Day", "Week", "Month", "Year")
+    DefaultText(
+        text = stringResource(id = R.string.title_transactions),
+        fontSize = 20.sp,
+        style = TextStyle(color = ColorMainText, fontWeight = FontWeight.SemiBold)
+    )
+    Spacer(modifier = Modifier.size(8.dp))
+    TabRow(
+        selectedTabIndex = 0,
+        backgroundColor = Color.Transparent,
+        contentColor = ColorSecondaryText,
+        divider = { Divider() },
+        indicator = {
+        }
+    ) {
+        items.forEach { text ->
+            Tab(selected = true, onClick = {
+
+            }) {
+                DefaultText(text = text)
+            }
+        }
     }
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun ChartCard(pagerState: PagerState) {
+fun ChartCard(pagerState: PagerState) {
     Card(
-        Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+        Modifier.fillMaxWidth(),
         backgroundColor = Color.White,
         shape = RoundedCornerShape(16.dp)
     ) {
@@ -160,9 +193,7 @@ private fun ChartSlide(pagerState: PagerState) {
 private fun SendMoneyAndCalculation() {
     val colorBackground = Color(0xFFDFE7F5)
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         Card(
