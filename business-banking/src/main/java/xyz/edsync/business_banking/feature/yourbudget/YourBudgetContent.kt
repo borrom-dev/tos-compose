@@ -6,6 +6,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -128,6 +129,48 @@ private fun TransactionContent() {
 
             }) {
                 DefaultText(text = text)
+            }
+        }
+    }
+    Spacer(modifier = Modifier.padding(top = 8.dp))
+    LazyColumn {
+        items(5) {
+            TransactionItem()
+        }
+    }
+}
+
+@Composable
+private fun TransactionItem() {
+    Card(
+        modifier = Modifier.padding(4.dp),
+        backgroundColor = Color.White,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp, horizontal = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                modifier = Modifier.size(40.dp),
+                painter = painterResource(id = R.drawable.ic_gas),
+                contentDescription = "gas"
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // TODO to update string
+                Column(horizontalAlignment = Alignment.Start) {
+                    DefaultText(text = "Shell", style = TextStyle(color = Color.Black))
+                    DefaultText(text = "17 Monday June", style = TextStyle(color = Color.Black))
+                }
+                DefaultText(text = "-$35,88", style = TextStyle(color = Color.Red))
             }
         }
     }
