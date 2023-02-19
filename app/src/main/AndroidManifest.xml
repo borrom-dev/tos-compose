@@ -21,21 +21,9 @@
 
         <activity
             android:name="xyz.edsync.business_banking.feature.yourbudget.YourBudgetActivity"
-            android:exported="true"
+            android:exported="false"
             android:label=""
-            android:theme="@style/Theme.BusinessBanking">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-
-        </activity>
+            android:theme="@style/Theme.BusinessBanking" />
 
         <activity
             android:name="xyz.edsync.business_banking.feature.splash.BusinessBankingSlashActivity"
@@ -60,6 +48,16 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TosCompose">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
 
         </activity>
 
