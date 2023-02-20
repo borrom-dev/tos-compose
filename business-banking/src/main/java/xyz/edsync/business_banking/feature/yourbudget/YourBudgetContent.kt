@@ -2,9 +2,7 @@ package xyz.edsync.business_banking.feature.yourbudget
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -44,12 +42,14 @@ fun YourBudgetContent() {
                             .background(color = ColorBackground)
                     )
                 }
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = { TopBar() },
-                    backgroundColor = Color.Transparent
-                ) {
-                    Content()
+                BoxWithConstraints {
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        topBar = { TopBar() },
+                        backgroundColor = Color.Transparent
+                    ) {
+                        Content(this.maxHeight)
+                    }
                 }
             }
         }
@@ -91,12 +91,15 @@ private fun TopBar() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun Content() {
+private fun Content(maxHeight: Dp) {
     val pagerState = rememberPagerState(0)
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp)
+            .verticalScroll(state = rememberScrollState())
+            .fillMaxWidth()
+            // explicit height modifier
+            .height(maxHeight)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Spacer(modifier = Modifier.size(8.dp))
         ChartCard(pagerState)
