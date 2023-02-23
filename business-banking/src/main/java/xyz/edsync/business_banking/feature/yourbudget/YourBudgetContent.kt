@@ -136,7 +136,7 @@ private fun TransactionContent() {
         }
     }
     Spacer(modifier = Modifier.padding(top = 8.dp))
-    LazyColumn {
+    LazyColumn(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
         items(5) {
             TransactionItem()
         }
