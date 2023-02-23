@@ -19,4 +19,5 @@
     <string name="text_add_budget">Add Budget</string>
     <string name="text_your_are_spent">You Are Spent</string>
     <string name="title_transactions">Transactions</string>
+    <string name="title_activity_expenses">ExpensesActivity</string>
 </resources>
