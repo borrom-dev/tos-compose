@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -42,14 +43,12 @@ fun YourBudgetContent() {
                             .background(color = ColorBackground)
                     )
                 }
-                BoxWithConstraints {
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        topBar = { TopBar() },
-                        backgroundColor = Color.Transparent
-                    ) {
-                        Content(this.maxHeight)
-                    }
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { TopBar() },
+                    backgroundColor = Color.Transparent
+                ) {
+                    Content()
                 }
             }
         }
@@ -91,14 +90,12 @@ private fun TopBar() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun Content(maxHeight: Dp) {
+private fun Content() {
     val pagerState = rememberPagerState(0)
     Column(
         modifier = Modifier
-            .verticalScroll(state = rememberScrollState())
             .fillMaxWidth()
-            // explicit height modifier
-            .height(maxHeight)
+            .wrapContentHeight()
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Spacer(modifier = Modifier.size(8.dp))
@@ -112,7 +109,12 @@ private fun Content(maxHeight: Dp) {
 
 @Composable
 private fun TransactionContent() {
-    val items = arrayOf("Day", "Week", "Month", "Year")
+    val items = arrayOf(
+        stringResource(id = R.string.text_day),
+        stringResource(id = R.string.text_week),
+        stringResource(id = R.string.text_month),
+        stringResource(id = R.string.text_year)
+    )
     DefaultText(
         text = stringResource(id = R.string.title_transactions),
         fontSize = 20.sp,
@@ -124,19 +126,29 @@ private fun TransactionContent() {
         backgroundColor = Color.Transparent,
         contentColor = ColorSecondaryText,
         divider = { Divider() },
-        indicator = {
-        }
+        indicator = {}
     ) {
-        items.forEach { text ->
-            Tab(selected = true, onClick = {
+        items.forEachIndexed { index, text ->
+            Tab(modifier = if (index == 0) Modifier
+                .clip(RoundedCornerShape(16))
+                .padding(8.dp)
+                .background(
+                    Color.White
+                ) else Modifier,
+                selected = true,
+                onClick = {
 
-            }) {
+                }) {
                 DefaultText(text = text)
             }
         }
     }
     Spacer(modifier = Modifier.padding(top = 8.dp))
-    LazyColumn(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+    ) {
         items(5) {
             TransactionItem()
         }
@@ -203,8 +215,7 @@ fun ChartCard(pagerState: PagerState) {
 @Composable
 private fun TitleChart() {
     Row(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         DefaultText(

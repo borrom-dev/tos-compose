@@ -20,4 +20,12 @@
     <string name="text_your_are_spent">You Are Spent</string>
     <string name="title_transactions">Transactions</string>
     <string name="title_activity_expenses">ExpensesActivity</string>
+    <string name="text_home">Home</string>
+    <string name="text_expenses">Expenses</string>
+    <string name="text_wallet">Wallet</string>
+    <string name="text_profile">Profile</string>
+    <string name="text_day">Day</string>
+    <string name="text_week">Week</string>
+    <string name="text_month">Month</string>
+    <string name="text_year">Year</string>
 </resources>
