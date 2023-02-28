@@ -10,7 +10,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -107,8 +106,10 @@ private fun Content() {
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun TransactionContent() {
+    val pagerState = rememberPagerState(0)
     val items = arrayOf(
         stringResource(id = R.string.text_day),
         stringResource(id = R.string.text_week),
@@ -122,7 +123,7 @@ private fun TransactionContent() {
     )
     Spacer(modifier = Modifier.size(8.dp))
     TabRow(
-        selectedTabIndex = 0,
+        selectedTabIndex = pagerState.currentPage,
         backgroundColor = Color.Transparent,
         contentColor = ColorSecondaryText,
         divider = { Divider() },
@@ -130,11 +131,10 @@ private fun TransactionContent() {
     ) {
         items.forEachIndexed { index, text ->
             Tab(modifier = if (index == 0) Modifier
-                .clip(RoundedCornerShape(16))
-                .padding(8.dp)
-                .background(
-                    Color.White
-                ) else Modifier,
+                .padding(4.dp)
+                .height(30.dp)
+                .background(color = Color(0xFFDFE7F5), shape = RoundedCornerShape(6.dp))
+            else Modifier.padding(8.dp),
                 selected = true,
                 onClick = {
 

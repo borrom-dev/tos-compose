@@ -33,9 +33,7 @@ fun HomeContent() {
                 TabRow(selectedTabIndex = 0) {
                     Tab(selected = true, onClick = {
                     }) {
-                        tabs.forEach {
-                            TabItem(IconRes = it.iconRes, titleRes = it.titleRes)
-                        }
+                        tabs.forEach { TabItem(IconRes = it.iconRes, titleRes = it.titleRes) }
                     }
                 }
             }
