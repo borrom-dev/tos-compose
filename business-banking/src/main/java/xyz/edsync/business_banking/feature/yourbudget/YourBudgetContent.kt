@@ -109,7 +109,9 @@ private fun Content() {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun TransactionContent() {
-    val pagerState = rememberPagerState(0)
+    var currentPage by remember {
+        mutableStateOf(0)
+    }
     val items = arrayOf(
         stringResource(id = R.string.text_day),
         stringResource(id = R.string.text_week),
@@ -123,21 +125,21 @@ private fun TransactionContent() {
     )
     Spacer(modifier = Modifier.size(8.dp))
     TabRow(
-        selectedTabIndex = pagerState.currentPage,
+        selectedTabIndex = currentPage,
         backgroundColor = Color.Transparent,
         contentColor = ColorSecondaryText,
         divider = { Divider() },
         indicator = {}
     ) {
         items.forEachIndexed { index, text ->
-            Tab(modifier = if (index == 0) Modifier
+            Tab(modifier = if (index == currentPage) Modifier
                 .padding(4.dp)
                 .height(30.dp)
                 .background(color = Color(0xFFDFE7F5), shape = RoundedCornerShape(6.dp))
             else Modifier.padding(8.dp),
-                selected = true,
+                selected = currentPage == index,
                 onClick = {
-
+                    currentPage = index
                 }) {
                 DefaultText(text = text)
             }
