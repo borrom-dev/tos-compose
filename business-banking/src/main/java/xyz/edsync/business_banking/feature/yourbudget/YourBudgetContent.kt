@@ -42,14 +42,12 @@ fun YourBudgetContent() {
                             .background(color = ColorBackground)
                     )
                 }
-                BoxWithConstraints {
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        topBar = { TopBar() },
-                        backgroundColor = Color.Transparent
-                    ) {
-                        Content(this.maxHeight)
-                    }
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { TopBar() },
+                    backgroundColor = Color.Transparent
+                ) {
+                    Content()
                 }
             }
         }
@@ -91,14 +89,12 @@ private fun TopBar() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun Content(maxHeight: Dp) {
+private fun Content() {
     val pagerState = rememberPagerState(0)
     Column(
         modifier = Modifier
-            .verticalScroll(state = rememberScrollState())
             .fillMaxWidth()
-            // explicit height modifier
-            .height(maxHeight)
+            .wrapContentHeight()
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Spacer(modifier = Modifier.size(8.dp))
@@ -110,9 +106,18 @@ private fun Content(maxHeight: Dp) {
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun TransactionContent() {
-    val items = arrayOf("Day", "Week", "Month", "Year")
+    var currentPage by remember {
+        mutableStateOf(0)
+    }
+    val items = arrayOf(
+        stringResource(id = R.string.text_day),
+        stringResource(id = R.string.text_week),
+        stringResource(id = R.string.text_month),
+        stringResource(id = R.string.text_year)
+    )
     DefaultText(
         text = stringResource(id = R.string.title_transactions),
         fontSize = 20.sp,
@@ -120,23 +125,32 @@ private fun TransactionContent() {
     )
     Spacer(modifier = Modifier.size(8.dp))
     TabRow(
-        selectedTabIndex = 0,
+        selectedTabIndex = currentPage,
         backgroundColor = Color.Transparent,
         contentColor = ColorSecondaryText,
         divider = { Divider() },
-        indicator = {
-        }
+        indicator = {}
     ) {
-        items.forEach { text ->
-            Tab(selected = true, onClick = {
-
-            }) {
+        items.forEachIndexed { index, text ->
+            Tab(modifier = if (index == currentPage) Modifier
+                .padding(4.dp)
+                .height(30.dp)
+                .background(color = Color(0xFFDFE7F5), shape = RoundedCornerShape(6.dp))
+            else Modifier.padding(8.dp),
+                selected = currentPage == index,
+                onClick = {
+                    currentPage = index
+                }) {
                 DefaultText(text = text)
             }
         }
     }
     Spacer(modifier = Modifier.padding(top = 8.dp))
-    LazyColumn(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+    ) {
         items(5) {
             TransactionItem()
         }
@@ -203,8 +217,7 @@ fun ChartCard(pagerState: PagerState) {
 @Composable
 private fun TitleChart() {
     Row(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         DefaultText(
