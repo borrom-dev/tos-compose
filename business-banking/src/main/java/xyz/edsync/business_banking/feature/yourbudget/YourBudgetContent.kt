@@ -30,11 +30,11 @@ import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.DotsIndicator
 
 @Composable
-fun YourBudgetContent() {
+fun YourBudgetContent(modifier: Modifier = Modifier) {
     BusinessBankingTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             Box {
-                Column(modifier = Modifier.fillMaxSize()) {
+                Column(modifier = modifier.fillMaxWidth()) {
                     BackgroundImage()
                     Spacer(
                         modifier = Modifier
