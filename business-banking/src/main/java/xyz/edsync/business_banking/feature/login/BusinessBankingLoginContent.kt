@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.feature.yourbudget.YourBudgetActivity
+import xyz.edsync.business_banking.feature.main.HomeActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
 import xyz.edsync.business_banking.utils.getDefaultTextFieldColors
@@ -153,7 +153,7 @@ private fun LoginButton() {
         .fillMaxWidth()
         .padding(horizontal = 16.dp)
         .height(48.dp),
-        onClick = { gotoYourBudgetScreen(context) }
+        onClick = { gotoHomeScreen(context) }
     ) {
         DefaultText(
             text = stringResource(id = R.string.btn_login),
@@ -258,8 +258,8 @@ fun LoginWithFacebookOrGoogle() {
     }
 }
 
-private fun gotoYourBudgetScreen(context: Context) {
-    val intent = Intent(context, YourBudgetActivity::class.java)
+private fun gotoHomeScreen(context: Context) {
+    val intent = Intent(context, HomeActivity::class.java)
     context.startActivity(intent)
 }
 

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import xyz.edsync.business_banking.feature.yourbudget.YourBudgetActivity
+import xyz.edsync.business_banking.feature.main.HomeActivity
 
 class BusinessBankingIntroActivity : ComponentActivity() {
 
@@ -12,13 +12,13 @@ class BusinessBankingIntroActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BusinessBankingIntroContent {
-                gotoYourBudget()
+                gotoHomeScreen()
             }
         }
     }
 
-    private fun gotoYourBudget() {
-        val intent = Intent(this, YourBudgetActivity::class.java)
+    private fun gotoHomeScreen() {
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
 
