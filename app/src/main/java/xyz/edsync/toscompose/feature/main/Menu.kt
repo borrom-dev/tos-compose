@@ -29,6 +29,7 @@ data class Menu(
             return Menu(
                 title = R.string.general,
                 sampleNames = mutableListOf<Int>().apply {
+                    add(R.string.slide_indicator)
                     add(R.string.background)
                     add(R.string.shape)
                 }
