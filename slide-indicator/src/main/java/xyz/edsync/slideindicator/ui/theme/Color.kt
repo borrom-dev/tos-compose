@@ -1,4 +1,4 @@
-package xyz.edsync.toscompose.slideindicator.ui.theme
+package xyz.edsync.slideindicator.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
