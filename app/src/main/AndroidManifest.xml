@@ -20,7 +20,7 @@
             android:theme="@style/Theme.TosCompose" />
 
         <activity
-            android:name="xyz.edsync.business_banking.feature.main.HomeActivity"
+            android:name="xyz.edsync.business_banking.feature.home.HomeActivity"
             android:exported="false"
             android:label=""
             android:theme="@style/Theme.BusinessBanking" />

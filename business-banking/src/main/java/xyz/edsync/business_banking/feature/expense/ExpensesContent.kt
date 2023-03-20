@@ -1,8 +1,7 @@
 package xyz.edsync.business_banking.feature.expense
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
@@ -18,18 +17,80 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
+import xyz.edsync.business_banking.ui.theme.*
 import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
 fun ExpenseContent() {
     BusinessBankingTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
+        Surface(
+            modifier = Modifier.fillMaxSize()
+        ) {
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 topBar = { TopBar() },
-                backgroundColor = Color.Transparent
+                backgroundColor = ColorBackground
             ) {
+                Content()
+            }
+        }
+    }
+}
+
+@Composable
+private fun Content() {
+    Column {
+        CardBalance()
+    }
+}
+
+@Composable
+private fun CardBalance() {
+    Spacer(modifier = Modifier.size(16.dp))
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Column {
+            DefaultText(
+                text = stringResource(id = R.string.text_card_balance),
+                style = TextStyle(color = ColorSecondaryText, fontSize = 13.sp)
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+            DefaultText(
+                text = "$6,390",
+                style = TextStyle(
+                    color = ColorDarkPrimary,
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+        }
+        Column {
+            Row() {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_income_arrow_up),
+                    contentDescription = "Income"
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                DefaultText(
+                    text = "$3,214",
+                    style = TextStyle(color = ColorIncome, fontSize = 12.sp)
+                )
+            }
+            Spacer(modifier = Modifier.size(8.dp))
+            Row {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_expense_arrow_down),
+                    contentDescription = "Expense"
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                DefaultText(
+                    text = "$1,116",
+                    style = TextStyle(color = ColorExpense, fontSize = 12.sp)
+                )
             }
         }
     }
@@ -41,7 +102,7 @@ private fun TopBar() {
         DefaultText(
             text = stringResource(id = R.string.title_your_budget),
             fontSize = 20.sp,
-            style = TextStyle(color = Color(0xFFD8D8D8), fontWeight = FontWeight.SemiBold)
+            style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
         )
     },
         modifier = Modifier.fillMaxWidth(),
@@ -50,7 +111,7 @@ private fun TopBar() {
         actions = {
             IconButton(onClick = { }) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_notification),
+                    painter = painterResource(id = R.drawable.ic_export),
                     contentDescription = "Notification"
                 )
             }

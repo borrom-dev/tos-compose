@@ -1,14 +1,16 @@
-package xyz.edsync.business_banking.feature.main
+package xyz.edsync.business_banking.feature.home
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -17,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.feature.yourbudget.YourBudgetContent
+import xyz.edsync.business_banking.feature.expense.ExpenseContent
 import xyz.edsync.business_banking.model.TabInfo
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
 import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
@@ -68,16 +70,17 @@ fun HomeContent() {
                                     .height(0.dp),
                                 count = tabs.size
                             ) {
-                                YourBudgetContent()
+                                ExpenseContent()
                             }
                             Box {
                                 TabRow(
-                                    modifier = Modifier.align(Alignment.BottomCenter),
+                                    modifier = Modifier.align(Alignment.Center),
                                     selectedTabIndex = tabState,
                                     backgroundColor = Color.White
                                 ) {
                                     tabs.forEachIndexed { index, tabInfo ->
                                         Tab(selected = tabState == index, onClick = {
+                                            tabState = index
                                         }) {
                                             if (tabInfo.iconRes != -1) {
                                                 TabItem(
@@ -89,16 +92,18 @@ fun HomeContent() {
                                         }
                                     }
                                 }
-                                FloatingActionButton(
-                                    modifier = Modifier
-                                        .align(Alignment.Center)
-                                        .padding(bottom = 16.dp),
-                                    onClick = { },
-                                    backgroundColor = ColorPrimary
-                                ) {
-                                    DefaultText(text = "+")
-                                }
                             }
+                        }
+                        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+                            Box(
+                                modifier = Modifier
+                                    .size(64.dp)
+                                    .clip(CircleShape)
+                                    .background(color = Color.White)
+                            ) {
+                                DefaultText(text = "+")
+                            }
+                            Spacer(modifier = Modifier.size(8.dp))
                         }
                     }
                 }

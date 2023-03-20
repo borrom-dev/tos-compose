@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import xyz.edsync.business_banking.feature.main.HomeActivity
+import xyz.edsync.business_banking.feature.home.HomeActivity
 
 class BusinessBankingIntroActivity : ComponentActivity() {
 
