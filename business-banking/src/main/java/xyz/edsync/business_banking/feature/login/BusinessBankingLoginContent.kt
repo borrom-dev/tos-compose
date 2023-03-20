@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.feature.main.HomeActivity
+import xyz.edsync.business_banking.feature.home.HomeActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
 import xyz.edsync.business_banking.utils.getDefaultTextFieldColors

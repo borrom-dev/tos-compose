@@ -1,4 +1,4 @@
-package xyz.edsync.toscompose.slideindicator
+package xyz.edsync.slideindicator
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

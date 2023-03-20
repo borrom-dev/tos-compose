@@ -1,4 +1,4 @@
-package xyz.edsync.toscompose.slideindicator
+package xyz.edsync.slideindicator
 
 import org.junit.Test
 

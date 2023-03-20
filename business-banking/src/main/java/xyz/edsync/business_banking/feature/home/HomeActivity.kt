@@ -1,4 +1,4 @@
-package xyz.edsync.business_banking.feature.main
+package xyz.edsync.business_banking.feature.home
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

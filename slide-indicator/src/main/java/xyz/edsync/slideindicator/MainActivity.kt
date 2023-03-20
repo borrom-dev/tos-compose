@@ -1,4 +1,4 @@
-package xyz.edsync.business_banking.feature.expense
+package xyz.edsync.slideindicator
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,9 +10,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import xyz.edsync.toscompose.theme.TosComposeTheme
+import xyz.edsync.slideindicator.ui.theme.TosComposeTheme
 
-class ExpensesActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -36,7 +36,7 @@ fun Greeting(name: String) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview2() {
+fun DefaultPreview() {
     TosComposeTheme {
         Greeting("Android")
     }
