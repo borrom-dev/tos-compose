@@ -2,6 +2,7 @@ package xyz.edsync.business_banking.feature.home
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -97,13 +98,26 @@ fun HomeContent() {
                         Column(modifier = Modifier.align(Alignment.BottomCenter)) {
                             Box(
                                 modifier = Modifier
-                                    .size(64.dp)
+                                    .size(56.dp)
                                     .clip(CircleShape)
                                     .background(color = Color.White)
+                            )
+                            Spacer(modifier = Modifier.size(16.dp))
+                        }
+                        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+                            Box(
+                                modifier = Modifier
+                                    .size(48.dp)
+                                    .clip(CircleShape)
+                                    .background(color = ColorPrimary)
                             ) {
-                                DefaultText(text = "+")
+                                Image(
+                                    modifier = Modifier.align(Alignment.Center),
+                                    painter = painterResource(id = R.drawable.ic_plus),
+                                    contentDescription = "Plus Icon"
+                                )
                             }
-                            Spacer(modifier = Modifier.size(8.dp))
+                            Spacer(modifier = Modifier.size(20.dp))
                         }
                     }
                 }
