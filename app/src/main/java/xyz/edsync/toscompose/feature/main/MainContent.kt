@@ -26,14 +26,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.common.util.extension.openUrl
 import xyz.edsync.common.util.listener.ItemClickListener
+import xyz.edsync.common.util.theme.Orange
+import xyz.edsync.common.util.theme.Teal200
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.toscompose.R
-import xyz.edsync.toscompose.theme.Orange
-import xyz.edsync.toscompose.theme.Teal200
 import xyz.edsync.toscompose.theme.TosComposeTheme
 
 @Composable
-fun MainContent(listener: ItemClickListener<Int>) {
+internal fun MainContent(listener: ItemClickListener<Int>) {
     TosComposeTheme {
         val context: Context = LocalContext.current
         Scaffold(modifier = Modifier.fillMaxSize(), topBar = { TopBar() }, floatingActionButton = {
@@ -45,7 +45,7 @@ fun MainContent(listener: ItemClickListener<Int>) {
 }
 
 @Composable
-fun TopBar() {
+private fun TopBar() {
     TopAppBar(title = {
         DefaultText(
             text = stringResource(id = R.string.app_name), fontSize = 20.sp, style = TextStyle(
@@ -63,7 +63,7 @@ fun TopBar() {
 }
 
 @Composable
-fun FloatingButton(onFloatingActionClick: () -> Unit) {
+private fun FloatingButton(onFloatingActionClick: () -> Unit) {
     FloatingActionButton(onClick = onFloatingActionClick) {
         Image(
             modifier = Modifier.size(46.dp),
@@ -76,7 +76,7 @@ fun FloatingButton(onFloatingActionClick: () -> Unit) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Body(menus: MutableList<Menu>, listener: ItemClickListener<Int>) {
+private fun Body(menus: MutableList<Menu>, listener: ItemClickListener<Int>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -94,7 +94,7 @@ fun Body(menus: MutableList<Menu>, listener: ItemClickListener<Int>) {
 }
 
 @Composable
-fun Header(@StringRes title: Int) {
+private fun Header(@StringRes title: Int) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -110,7 +110,7 @@ fun Header(@StringRes title: Int) {
 }
 
 @Composable
-fun BodyItem(
+private fun BodyItem(
     @StringRes sampleName: Int, isLastItem: Boolean = false, listener: ItemClickListener<Int>
 ) {
     Column(modifier = Modifier
@@ -130,7 +130,6 @@ fun BodyItem(
         }
     }
 }
-
 
 
 @Preview(showBackground = true)
