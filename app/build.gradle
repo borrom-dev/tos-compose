@@ -74,4 +74,5 @@ dependencies {
     implementation project(':background')
     implementation project(':business-banking')
     implementation project(':apple-watch-menu')
+    implementation project(':page-indicator')
 }

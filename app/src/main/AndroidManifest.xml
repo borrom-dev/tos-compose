@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TosCompose"
         tools:targetApi="31">
-
+        
         <activity
             android:name="xyz.edsync.apple_watch_menu.feature.main.AppleWatchMenuActivity"
             android:exported="false"
