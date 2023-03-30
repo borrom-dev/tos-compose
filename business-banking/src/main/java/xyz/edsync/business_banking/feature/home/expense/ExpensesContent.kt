@@ -1,4 +1,4 @@
-package xyz.edsync.business_banking.feature.expense
+package xyz.edsync.business_banking.feature.home.expense
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -143,7 +143,7 @@ private fun TopBar() {
             IconButton(onClick = { }) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_export),
-                    contentDescription = "Notification"
+                    contentDescription = "Export"
                 )
             }
         })
