@@ -33,22 +33,19 @@ import xyz.edsync.common.util.ui.DotsIndicator
 fun YourBudgetContent(modifier: Modifier = Modifier) {
     BusinessBankingTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            Box {
-                Column(modifier = modifier.fillMaxWidth()) {
-                    BackgroundImage()
-                    Spacer(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(color = ColorBackground)
-                    )
-                }
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = { TopBar() },
-                    backgroundColor = Color.Transparent
-                ) {
-                    Content()
-                }
+            Column(modifier = modifier.fillMaxWidth()) {
+                BackgroundImage()
+                Spacer(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = ColorBackground)
+                )
+            }
+            Scaffold(
+                topBar = { TopBar() },
+                backgroundColor = Color.Transparent
+            ) {
+                Content()
             }
         }
     }
@@ -91,24 +88,6 @@ private fun TopBar() {
 @Composable
 private fun Content() {
     val pagerState = rememberPagerState(0)
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-    ) {
-        Spacer(modifier = Modifier.size(8.dp))
-        ChartCard(pagerState)
-        Spacer(modifier = Modifier.size(24.dp))
-        SendMoneyAndCalculation()
-        Spacer(modifier = Modifier.size(16.dp))
-        TransactionContent()
-    }
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-private fun TransactionContent() {
     var currentPage by remember {
         mutableStateOf(0)
     }
@@ -118,43 +97,57 @@ private fun TransactionContent() {
         stringResource(id = R.string.text_month),
         stringResource(id = R.string.text_year)
     )
-    DefaultText(
-        text = stringResource(id = R.string.title_transactions),
-        fontSize = 20.sp,
-        style = TextStyle(color = ColorMainText, fontWeight = FontWeight.SemiBold)
-    )
-    Spacer(modifier = Modifier.size(8.dp))
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        item {
+            Column() {
+                Spacer(modifier = Modifier.size(8.dp))
+                ChartCard(pagerState)
+                Spacer(modifier = Modifier.size(24.dp))
+                SendMoneyAndCalculation()
+                Spacer(modifier = Modifier.size(16.dp))
+                DefaultText(
+                    text = stringResource(id = R.string.title_transactions),
+                    fontSize = 20.sp,
+                    style = TextStyle(color = ColorMainText, fontWeight = FontWeight.SemiBold)
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                TransactionFilterHeader(currentPage, items)
+            }
+        }
+        items(5) {
+            TransactionItem()
+        }
+    }
+}
+
+@Composable
+private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
+    var currentPage1 = currentPage
     TabRow(
-        selectedTabIndex = currentPage,
+        selectedTabIndex = currentPage1,
         backgroundColor = Color.Transparent,
         contentColor = ColorSecondaryText,
         divider = { Divider() },
         indicator = {}
     ) {
         items.forEachIndexed { index, text ->
-            Tab(modifier = if (index == currentPage) Modifier
+            Tab(modifier = if (index == currentPage1) Modifier
                 .padding(4.dp)
                 .height(30.dp)
                 .background(color = Color(0xFFDFE7F5), shape = RoundedCornerShape(6.dp))
             else Modifier.padding(8.dp),
-                selected = currentPage == index,
+                selected = currentPage1 == index,
                 onClick = {
-                    currentPage = index
+                    currentPage1 = index
                 }) {
                 DefaultText(text = text)
             }
         }
     }
     Spacer(modifier = Modifier.padding(top = 8.dp))
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-    ) {
-        items(5) {
-            TransactionItem()
-        }
-    }
 }
 
 @Composable
