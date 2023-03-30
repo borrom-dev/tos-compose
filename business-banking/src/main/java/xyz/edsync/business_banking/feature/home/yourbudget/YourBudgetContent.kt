@@ -99,6 +99,7 @@ private fun Content() {
     )
     LazyColumn(
         modifier = Modifier
+            .padding(horizontal = 16.dp)
             .fillMaxSize()
     ) {
         item {
