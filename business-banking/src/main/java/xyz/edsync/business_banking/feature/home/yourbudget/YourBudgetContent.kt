@@ -1,4 +1,4 @@
-package xyz.edsync.business_banking.feature.yourbudget
+package xyz.edsync.business_banking.feature.home.yourbudget
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween

@@ -2,16 +2,13 @@ package xyz.edsync.business_banking.feature.home
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -24,9 +21,11 @@ import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.feature.expense.ExpenseContent
+import xyz.edsync.business_banking.feature.home.expense.ExpenseContent
 import xyz.edsync.business_banking.feature.home.model.enums.HomeTab
-import xyz.edsync.business_banking.feature.yourbudget.YourBudgetContent
+import xyz.edsync.business_banking.feature.home.profile.ProfileContent
+import xyz.edsync.business_banking.feature.home.wallet.WalletContent
+import xyz.edsync.business_banking.feature.home.yourbudget.YourBudgetContent
 import xyz.edsync.business_banking.model.TabInfo
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
 import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
@@ -48,7 +47,6 @@ private fun Body() {
     val tabs = mutableListOf(
         TabInfo(R.string.text_home, R.drawable.ic_banking_home),
         TabInfo(R.string.text_expenses, R.drawable.ic_banking_expenses),
-        TabInfo(-1, -1),
         TabInfo(R.string.text_wallet, R.drawable.ic_banking_wallet),
         TabInfo(R.string.text_profile, R.drawable.ic_banking_profile)
     )
@@ -66,10 +64,7 @@ private fun Body() {
             elevation = 8.dp
         ) {
             Box {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
+                Column(modifier = Modifier.fillMaxWidth()) {
                     HorizontalPager(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -81,30 +76,6 @@ private fun Body() {
                         HorizontalContents(position = position)
                     }
                     TabContent(coroutineScope, pagerState, tabs)
-                }
-                Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-                    Box(
-                        modifier = Modifier
-                            .size(56.dp)
-                            .clip(CircleShape)
-                            .background(color = Color.White)
-                    )
-                    Spacer(modifier = Modifier.size(16.dp))
-                }
-                Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-                    Box(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clip(CircleShape)
-                            .background(color = ColorPrimary)
-                    ) {
-                        Image(
-                            modifier = Modifier.align(Alignment.Center),
-                            painter = painterResource(id = R.drawable.ic_plus),
-                            contentDescription = "Plus Icon"
-                        )
-                    }
-                    Spacer(modifier = Modifier.size(20.dp))
                 }
             }
         }
@@ -118,11 +89,7 @@ private fun TabContent(
     pagerState: PagerState,
     tabs: MutableList<TabInfo>
 ) {
-    val selectedTabIndex = when (pagerState.currentPage) {
-        2 -> HomeTab.WALLET.rawValue
-        3 -> HomeTab.PROFILE.rawValue
-        else -> pagerState.currentPage
-    }
+    val selectedTabIndex = pagerState.currentPage
     Box {
         TabRow(
             modifier = Modifier.align(Alignment.Center),
@@ -131,12 +98,8 @@ private fun TabContent(
         ) {
             tabs.forEachIndexed { index, tabInfo ->
                 Tab(selected = selectedTabIndex == index, onClick = {
-                    val clickedIndex = when (index) {
-                        HomeTab.WALLET.rawValue, HomeTab.PROFILE.rawValue -> index - 1
-                        else -> index
-                    }
                     coroutineScope.launch {
-                        pagerState.animateScrollToPage(clickedIndex)
+                        pagerState.animateScrollToPage(index)
                     }
                 }) {
                     if (tabInfo.iconRes != -1) {
@@ -157,8 +120,8 @@ private fun HorizontalContents(position: Int) {
     when (position) {
         HomeTab.HOME.rawValue -> YourBudgetContent()
         HomeTab.EXPENSES.rawValue -> ExpenseContent()
-        HomeTab.WALLET.rawValue -> YourBudgetContent()
-        HomeTab.PROFILE.rawValue -> ExpenseContent()
+        HomeTab.WALLET.rawValue -> WalletContent()
+        HomeTab.PROFILE.rawValue -> ProfileContent()
     }
 }
 
