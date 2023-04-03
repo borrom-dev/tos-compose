@@ -26,10 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.common.util.extension.openUrl
 import xyz.edsync.common.util.listener.ItemClickListener
+import xyz.edsync.common.util.theme.Orange
+import xyz.edsync.common.util.theme.Teal200
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.toscompose.R
-import xyz.edsync.toscompose.theme.Orange
-import xyz.edsync.toscompose.theme.Teal200
 import xyz.edsync.toscompose.theme.TosComposeTheme
 
 @Composable
