@@ -1,6 +1,9 @@
 package xyz.edsync.business_banking.feature.home.profile
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.IconButton
@@ -25,17 +28,34 @@ import xyz.edsync.common.util.ui.DefaultText
 @Composable
 fun ProfileContent() {
     BusinessBankingTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Surface(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                BackgroundImage()
+                Spacer(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = ColorBackground)
+                )
+            }
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 topBar = { TopBar() },
-                backgroundColor = ColorBackground
+                backgroundColor = Color.Transparent
             ) {
             }
         }
     }
+}
+
+@Composable
+private fun BackgroundImage() {
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = ColorBackground),
+        painter = painterResource(R.drawable.bg_your_budget),
+        contentDescription = "backgroundImage",
+    )
 }
 
 @Composable
