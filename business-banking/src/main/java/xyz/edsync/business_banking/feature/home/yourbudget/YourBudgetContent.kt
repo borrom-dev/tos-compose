@@ -112,7 +112,7 @@ private fun Content() {
                 DefaultText(
                     text = stringResource(id = R.string.title_transactions),
                     fontSize = 20.sp,
-                    style = TextStyle(color = ColorMainText, fontWeight = FontWeight.SemiBold)
+                    style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 TransactionFilterHeader(currentPage, items)
@@ -360,7 +360,7 @@ fun ChartProgress(
                 Spacer(modifier = Modifier.size(4.dp))
                 DefaultText(
                     text = "$6,390",
-                    style = TextStyle(color = ColorMainText, fontWeight = FontWeight.Bold),
+                    style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.Bold),
                     fontSize = 30.sp
                 )
                 Spacer(modifier = Modifier.size(4.dp))
