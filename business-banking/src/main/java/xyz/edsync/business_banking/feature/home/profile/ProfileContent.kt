@@ -1,11 +1,11 @@
 package xyz.edsync.business_banking.feature.home.profile
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,6 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
+import xyz.edsync.business_banking.feature.home.profile.model.GroupProfileMenu
+import xyz.edsync.business_banking.feature.home.profile.model.ProfileMenu
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorBackground
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
@@ -47,10 +49,13 @@ fun ProfileContent() {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun Content() {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
         Card(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
             shape = RoundedCornerShape(12.dp),
@@ -90,14 +95,63 @@ private fun Content() {
                 )
             }
         }
-        val menus = arrayListOf("GENERAL", "CHART")
-        LazyColumn {
-            menus.forEach {
-                stickyHeader { DefaultText(text = it) }
-                items(2) {
-
+        val menus = GroupProfileMenu.getItems()
+        menus.forEach {
+            Spacer(modifier = Modifier.size(8.dp))
+            DefaultText(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = stringResource(id = it.title),
+                style = TextStyle(color = ColorSecondaryText, fontSize = 13.sp)
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                it.profileMenus.forEach { item ->
+                    ItemContent(profileMenu = item)
                 }
             }
+        }
+        Spacer(modifier = Modifier.size(8.dp))
+    }
+}
+
+@Composable
+private fun ItemContent(profileMenu: ProfileMenu) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        backgroundColor = Color.White,
+        shape = RoundedCornerShape(10.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(painter = painterResource(id = profileMenu.icon), contentDescription = "icon")
+            Column(
+                modifier = Modifier
+                    .width(0.dp)
+                    .weight(weight = 1F)
+                    .padding(start = 8.dp)
+            ) {
+                DefaultText(
+                    text = stringResource(id = profileMenu.title),
+                    style = TextStyle(color = ColorDarkPrimary),
+                    fontSize = 16.sp
+                )
+                DefaultText(
+                    text = stringResource(id = profileMenu.subtitle),
+                    style = TextStyle(color = ColorSecondaryText),
+                    fontSize = 13.sp
+                )
+            }
+            Image(
+                modifier = Modifier.padding(end = 16.dp),
+                painter = painterResource(id = R.drawable.ic_right),
+                contentDescription = "right"
+            )
         }
     }
 }
