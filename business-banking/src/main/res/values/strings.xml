@@ -47,4 +47,15 @@
         <item>Nov</item>
         <item>Dec</item>
     </string-array>
+
+    <string name="title_general">GENERAL</string>
+    <string name="title_profile_settings">Profile Settings</string>
+    <string name="subtitle_profile_settings">Update and modify your profile</string>
+    <string name="title_privacy">Privacy</string>
+    <string name="subtitle_privacy">Change your password</string>
+    <string name="title_notification">Notifications</string>
+    <string name="subtitle_notification">Change your notification settings</string>
+    <string name="title_chart">CHART</string>
+    <string name="title_show_volumes">Show Volumes</string>
+    <string name="subtitle_show_volumes">Edit graphics</string>
 </resources>
