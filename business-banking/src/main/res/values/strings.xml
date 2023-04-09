@@ -58,4 +58,6 @@
     <string name="title_chart">CHART</string>
     <string name="title_show_volumes">Show Volumes</string>
     <string name="subtitle_show_volumes">Edit graphics</string>
+
+    <string name="title_send_money_to">Send Money To</string>
 </resources>

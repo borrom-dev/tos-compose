@@ -88,7 +88,7 @@ private fun TopBar() {
 @Composable
 private fun Content() {
     val pagerState = rememberPagerState(0)
-    var currentPage by remember {
+    val currentPage by remember {
         mutableStateOf(0)
     }
     val items = arrayOf(
