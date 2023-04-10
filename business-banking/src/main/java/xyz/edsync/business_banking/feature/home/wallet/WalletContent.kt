@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -57,11 +58,14 @@ private fun Content() {
         stringResource(id = R.string.text_month),
         stringResource(id = R.string.text_year)
     )
-    LazyColumn {
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
+            AmountContent()
+            Spacer(modifier = Modifier.size(8.dp))
             SendMoneyToContent()
             Spacer(modifier = Modifier.size(16.dp))
             DefaultText(
+                modifier = Modifier.padding(start = 16.dp),
                 text = stringResource(id = R.string.title_transactions),
                 fontSize = 20.sp,
                 style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
@@ -121,9 +125,94 @@ private fun SendMoneyToContent() {
 }
 
 @Composable
+private fun AmountContent() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            val textStyle = TextStyle(color = ColorDarkPrimary, fontSize = 13.sp)
+            DefaultText(
+                text = stringResource(id = R.string.title_remaining_amount),
+                style = textStyle
+            )
+            DefaultText(text = "%38", style = textStyle)
+        }
+        Spacer(modifier = Modifier.size(4.dp))
+        LinearProgressIndicator(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .clip(RoundedCornerShape(10.dp)),
+            backgroundColor = ColorExpense,
+            progress = 0.62F,
+            color = ColorIncome,
+        )
+        Spacer(modifier = Modifier.size(16.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IncomeRow()
+            ExpenseRow()
+        }
+    }
+}
+
+@Composable
+private fun IncomeRow() {
+    Row {
+        Image(
+            modifier = Modifier.size(48.dp),
+            painter = painterResource(id = R.drawable.ic_income_arrow_up),
+            contentDescription = "Income"
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        Column {
+            DefaultText(
+                text = stringResource(id = R.string.label_income),
+                style = TextStyle(color = ColorSecondaryText, fontSize = 13.sp)
+            )
+            DefaultText(
+                text = "$3,214",
+                style = TextStyle(color = ColorIncome, fontSize = 12.sp)
+            )
+        }
+    }
+}
+
+@Composable
+private fun ExpenseRow() {
+    Row {
+        Image(
+            modifier = Modifier.size(48.dp),
+            painter = painterResource(id = R.drawable.ic_expense_arrow_down),
+            contentDescription = "Expense"
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        Column {
+            DefaultText(
+                text = stringResource(id = R.string.label_expense),
+                style = TextStyle(color = ColorSecondaryText, fontSize = 13.sp)
+            )
+            DefaultText(
+                text = "$1,116",
+                style = TextStyle(color = ColorExpense, fontSize = 16.sp)
+            )
+        }
+    }
+}
+
+@Composable
 private fun TransactionItem() {
     Card(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
         backgroundColor = Color.White,
         shape = RoundedCornerShape(8.dp)
     ) {
@@ -160,6 +249,7 @@ private fun TransactionItem() {
 private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
     var currentPage1 = currentPage
     TabRow(
+        modifier = Modifier.padding(horizontal = 13.dp),
         selectedTabIndex = currentPage1,
         backgroundColor = Color.Transparent,
         contentColor = ColorSecondaryText,
