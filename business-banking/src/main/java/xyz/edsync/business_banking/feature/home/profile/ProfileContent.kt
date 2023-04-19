@@ -1,11 +1,9 @@
 package xyz.edsync.business_banking.feature.home.profile
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import android.util.Log
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -126,7 +124,10 @@ private fun ItemContent(profileMenu: ProfileMenu) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(all = 8.dp),
+                .padding(all = 8.dp)
+                .clickable {
+                    Log.d("@@@", "Profile Row Clicked")
+                },
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(painter = painterResource(id = profileMenu.icon), contentDescription = "icon")

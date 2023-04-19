@@ -91,7 +91,7 @@ private fun SendMoneyToContent() {
     LazyRow(modifier = Modifier.fillMaxWidth()) {
         items(count = 5) {
             Row(modifier = Modifier.fillMaxWidth()) {
-                Spacer(modifier = Modifier.size(16.dp))
+                Spacer(modifier = Modifier.size(8.dp))
                 Card(
                     modifier = Modifier
                         .width(90.dp)
@@ -132,8 +132,7 @@ private fun AmountContent() {
             .padding(horizontal = 16.dp)
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             val textStyle = TextStyle(color = ColorDarkPrimary, fontSize = 13.sp)
@@ -147,7 +146,6 @@ private fun AmountContent() {
         LinearProgressIndicator(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
                 .clip(RoundedCornerShape(10.dp)),
             backgroundColor = ColorExpense,
             progress = 0.62F,
@@ -156,56 +154,71 @@ private fun AmountContent() {
         Spacer(modifier = Modifier.size(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IncomeRow()
-            ExpenseRow()
+            Row(
+                modifier = Modifier
+                    .width(0.dp)
+                    .weight(weight = 1F)
+            ) {
+                IncomeRowContent()
+            }
+            Row(
+                modifier = Modifier
+                    .width(0.dp)
+                    .weight(weight = 1F)
+            ) {
+                ExpenseRowContent()
+            }
         }
     }
 }
 
 @Composable
-private fun IncomeRow() {
-    Row {
-        Image(
-            modifier = Modifier.size(48.dp),
-            painter = painterResource(id = R.drawable.ic_income_arrow_up),
-            contentDescription = "Income"
+private fun IncomeRowContent() {
+    Image(
+        modifier = Modifier.size(48.dp),
+        painter = painterResource(id = R.drawable.ic_income_arrow_up),
+        contentDescription = "Income"
+    )
+    Spacer(modifier = Modifier.size(8.dp))
+    Column {
+        DefaultText(
+            text = stringResource(id = R.string.label_income),
+            style = TextStyle(
+                color = ColorSecondaryText,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.SemiBold
+            )
         )
-        Spacer(modifier = Modifier.size(8.dp))
-        Column {
-            DefaultText(
-                text = stringResource(id = R.string.label_income),
-                style = TextStyle(color = ColorSecondaryText, fontSize = 13.sp)
-            )
-            DefaultText(
-                text = "$3,214",
-                style = TextStyle(color = ColorIncome, fontSize = 12.sp)
-            )
-        }
+        DefaultText(
+            text = "$3,214",
+            style = TextStyle(color = ColorIncome, fontSize = 12.sp)
+        )
     }
 }
 
 @Composable
-private fun ExpenseRow() {
-    Row {
-        Image(
-            modifier = Modifier.size(48.dp),
-            painter = painterResource(id = R.drawable.ic_expense_arrow_down),
-            contentDescription = "Expense"
+private fun ExpenseRowContent() {
+    Image(
+        modifier = Modifier.size(48.dp),
+        painter = painterResource(id = R.drawable.ic_expense_arrow_down),
+        contentDescription = "Expense"
+    )
+    Spacer(modifier = Modifier.size(8.dp))
+    Column {
+        DefaultText(
+            text = stringResource(id = R.string.label_expense),
+            style = TextStyle(
+                color = ColorSecondaryText,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.SemiBold
+            )
         )
-        Spacer(modifier = Modifier.size(8.dp))
-        Column {
-            DefaultText(
-                text = stringResource(id = R.string.label_expense),
-                style = TextStyle(color = ColorSecondaryText, fontSize = 13.sp)
-            )
-            DefaultText(
-                text = "$1,116",
-                style = TextStyle(color = ColorExpense, fontSize = 16.sp)
-            )
-        }
+        DefaultText(
+            text = "$1,116",
+            style = TextStyle(color = ColorExpense, fontSize = 16.sp)
+        )
     }
 }
 
