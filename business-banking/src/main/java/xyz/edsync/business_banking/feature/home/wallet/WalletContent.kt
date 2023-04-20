@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -39,7 +40,7 @@ fun WalletContent() {
                 topBar = { TopBar() },
                 backgroundColor = ColorBackground
             ) {
-                Content()
+                Content(it)
             }
         }
     }
@@ -47,7 +48,7 @@ fun WalletContent() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun Content() {
+private fun Content(paddingValues: PaddingValues) {
     val pagerState = rememberPagerState(0)
     val currentPage by remember {
         mutableStateOf(0)
@@ -60,6 +61,7 @@ private fun Content() {
     )
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
+            CardContent()
             AmountContent()
             Spacer(modifier = Modifier.size(8.dp))
             SendMoneyToContent()
@@ -77,6 +79,27 @@ private fun Content() {
             TransactionItem()
         }
     }
+}
+
+@Composable
+private fun CardContent() {
+    val items = arrayOf(R.drawable.ic_card_1, R.drawable.ic_card_2)
+    LazyRow(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        items(items = items) {
+            CardItemContent(it)
+        }
+    }
+}
+
+@Composable
+private fun CardItemContent(drawableRes: Int) {
+    Image(
+        modifier = Modifier.height(177.dp),
+        painter = painterResource(id = drawableRes),
+        contentDescription = "Card"
+    )
 }
 
 @Composable
@@ -289,11 +312,19 @@ private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
 @Composable
 private fun TopBar() {
     TopAppBar(title = {
-        DefaultText(
-            text = stringResource(id = R.string.text_wallet),
-            fontSize = 20.sp,
-            style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            DefaultText(
+                text = stringResource(id = R.string.text_wallet),
+                fontSize = 20.sp,
+                style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
+            )
+            Spacer(modifier = Modifier.size(4.dp))
+            DefaultText(
+                text = stringResource(id = R.string.text_wallet_desc),
+                fontSize = 12.sp,
+                style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
+            )
+        }
     },
         modifier = Modifier.fillMaxWidth(),
         elevation = 0.dp,
