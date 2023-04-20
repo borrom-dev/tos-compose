@@ -39,7 +39,7 @@ fun WalletContent() {
                 topBar = { TopBar() },
                 backgroundColor = ColorBackground
             ) {
-                Content()
+                Content(it)
             }
         }
     }
@@ -47,7 +47,7 @@ fun WalletContent() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun Content() {
+private fun Content(paddingValues: PaddingValues) {
     val pagerState = rememberPagerState(0)
     val currentPage by remember {
         mutableStateOf(0)
@@ -289,11 +289,19 @@ private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
 @Composable
 private fun TopBar() {
     TopAppBar(title = {
-        DefaultText(
-            text = stringResource(id = R.string.text_wallet),
-            fontSize = 20.sp,
-            style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            DefaultText(
+                text = stringResource(id = R.string.text_wallet),
+                fontSize = 20.sp,
+                style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
+            )
+            Spacer(modifier = Modifier.size(4.dp))
+            DefaultText(
+                text = stringResource(id = R.string.text_wallet_desc),
+                fontSize = 12.sp,
+                style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
+            )
+        }
     },
         modifier = Modifier.fillMaxWidth(),
         elevation = 0.dp,
