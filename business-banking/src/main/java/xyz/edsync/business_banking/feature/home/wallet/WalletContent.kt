@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -60,6 +61,7 @@ private fun Content(paddingValues: PaddingValues) {
     )
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
+            CardContent()
             AmountContent()
             Spacer(modifier = Modifier.size(8.dp))
             SendMoneyToContent()
@@ -77,6 +79,27 @@ private fun Content(paddingValues: PaddingValues) {
             TransactionItem()
         }
     }
+}
+
+@Composable
+private fun CardContent() {
+    val items = arrayOf(R.drawable.ic_card_1, R.drawable.ic_card_2)
+    LazyRow(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        items(items = items) {
+            CardItemContent(it)
+        }
+    }
+}
+
+@Composable
+private fun CardItemContent(drawableRes: Int) {
+    Image(
+        modifier = Modifier.height(177.dp),
+        painter = painterResource(id = drawableRes),
+        contentDescription = "Card"
+    )
 }
 
 @Composable
