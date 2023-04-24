@@ -2,13 +2,13 @@ package xyz.edsync.business_banking.feature.home.expense
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -42,9 +42,22 @@ fun ExpenseContent() {
 
 @Composable
 private fun Content() {
-    Column {
-        CardBalanceContent()
-        FilterContent()
+    LazyColumn {
+        item {
+            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                CardBalanceContent()
+                FilterContent()
+                DefaultText(
+                    text = "Spending Breakdown",
+                    fontSize = 20.sp,
+                    style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+            }
+        }
+        item {
+            SpendingBreakDownItem()
+        }
     }
 }
 
@@ -57,6 +70,42 @@ private fun FilterContent() {
 
             }
         })
+    }
+}
+
+@Composable
+private fun SpendingBreakDownItem() {
+    Card(
+        modifier = Modifier.padding(4.dp),
+        backgroundColor = Color.White,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp, horizontal = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                modifier = Modifier.size(40.dp),
+                painter = painterResource(id = R.drawable.ic_gas),
+                contentDescription = "gas"
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // TODO to update string
+                Column(horizontalAlignment = Alignment.Start) {
+                    DefaultText(text = "Shell", style = TextStyle(color = Color.Black))
+                    DefaultText(text = "17 Monday June", style = TextStyle(color = Color.Black))
+                }
+                DefaultText(text = "-$35,88", style = TextStyle(color = Color.Red))
+            }
+        }
     }
 }
 
@@ -131,7 +180,7 @@ private fun ExpenseRow() {
 private fun TopBar() {
     TopAppBar(title = {
         DefaultText(
-            text = stringResource(id = R.string.title_your_budget),
+            text = stringResource(id = R.string.title_expenses),
             fontSize = 20.sp,
             style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
         )
