@@ -76,7 +76,7 @@ private fun FilterContent() {
 @Composable
 private fun SpendingBreakDownItem() {
     Card(
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp),
         backgroundColor = Color.White,
         shape = RoundedCornerShape(8.dp)
     ) {

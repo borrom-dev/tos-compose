@@ -96,7 +96,9 @@ private fun CardContent() {
 @Composable
 private fun CardItemContent(drawableRes: Int) {
     Image(
-        modifier = Modifier.height(177.dp),
+        modifier = Modifier
+            .height(177.dp)
+            .width(240.dp),
         painter = painterResource(id = drawableRes),
         contentDescription = "Card"
     )
