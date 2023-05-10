@@ -28,6 +28,7 @@ import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
+import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.DotsIndicator
 
@@ -81,8 +82,8 @@ private fun Content() {
             DotsIndicator(
                 totalDots = 6,
                 selectedIndex = pagerState.currentPage,
-                selectedColor = Color(0xFF042C5C),
-                unSelectedColor = Color(0xFF77869E)
+                selectedColor = ColorDarkPrimary,
+                unSelectedColor = ColorSecondaryText
             )
             Buttons()
         }
@@ -139,7 +140,7 @@ private fun SlideContent() {
                 DefaultText(
                     text = stringResource(id = R.string.text_desc_intro),
                     style = TextStyle(
-                        color = Color(0xFF77869E),
+                        color = ColorSecondaryText,
                         textAlign = TextAlign.Center
                     ),
                     fontSize = 13.sp

@@ -68,7 +68,7 @@ private fun TopBar() {
         DefaultText(
             text = stringResource(id = R.string.title_your_budget),
             fontSize = 20.sp,
-            style = TextStyle(color = Color(0xFFD8D8D8), fontWeight = FontWeight.SemiBold)
+            style = TextStyle(color = ColorYourBudgetTitleTopBar, fontWeight = FontWeight.SemiBold)
         )
     },
         modifier = Modifier.fillMaxWidth(),
@@ -138,7 +138,7 @@ private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
             Tab(modifier = if (index == currentPage1) Modifier
                 .padding(4.dp)
                 .height(30.dp)
-                .background(color = Color(0xFFDFE7F5), shape = RoundedCornerShape(6.dp))
+                .background(color = ColorYourBudgetBackground, shape = RoundedCornerShape(6.dp))
             else Modifier.padding(8.dp),
                 selected = currentPage1 == index,
                 onClick = {
@@ -236,7 +236,7 @@ private fun ChartSlide(pagerState: PagerState) {
         totalDots = 3,
         selectedIndex = pagerState.currentPage,
         selectedColor = ColorPrimary,
-        unSelectedColor = Color(0xFFE6ECF0),
+        unSelectedColor = ColorUnselectedDot,
         dotShape = RoundedCornerShape(4.dp),
         dotModifier = Modifier.size(width = 16.dp, height = 4.dp)
     )
@@ -244,7 +244,6 @@ private fun ChartSlide(pagerState: PagerState) {
 
 @Composable
 private fun SendMoneyAndCalculation() {
-    val colorBackground = Color(0xFFDFE7F5)
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceAround
@@ -253,7 +252,7 @@ private fun SendMoneyAndCalculation() {
             modifier = Modifier
                 .weight(1F)
                 .height(48.dp),
-            backgroundColor = colorBackground,
+            backgroundColor = ColorYourBudgetBackground,
             elevation = 0.dp,
             shape = RoundedCornerShape(6.dp)
         ) {
@@ -269,7 +268,10 @@ private fun SendMoneyAndCalculation() {
                         contentDescription = "Icon Facebook"
                     )
                     Spacer(modifier = Modifier.size(12.dp))
-                    DefaultText(text = "Send Money", style = TextStyle(color = ColorPrimary))
+                    DefaultText(
+                        text = stringResource(id = R.string.text_send_money),
+                        style = TextStyle(color = ColorPrimary)
+                    )
                 }
             }
         }
@@ -278,7 +280,7 @@ private fun SendMoneyAndCalculation() {
             modifier = Modifier
                 .weight(1F)
                 .height(48.dp),
-            backgroundColor = colorBackground,
+            backgroundColor = ColorYourBudgetBackground,
             elevation = 0.dp,
             shape = RoundedCornerShape(6.dp)
         ) {
@@ -294,7 +296,10 @@ private fun SendMoneyAndCalculation() {
                         contentDescription = "Icon Google"
                     )
                     Spacer(modifier = Modifier.size(12.dp))
-                    DefaultText(text = "Calculation", style = TextStyle(color = ColorPrimary))
+                    DefaultText(
+                        text = stringResource(id = R.string.text_calculation),
+                        style = TextStyle(color = ColorPrimary)
+                    )
                 }
             }
         }
@@ -379,15 +384,15 @@ fun ChartProgress(
                 .offset(y = (-50).dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            val color = Color(0xFF77869E)
+            val textStyle = TextStyle(color = ColorSecondaryText)
             DefaultText(
                 modifier = Modifier.padding(start = 20.dp),
-                text = "0%",
-                style = TextStyle(color = color)
+                text = stringResource(id = R.string.text_min_percentage),
+                style = textStyle
             )
             DefaultText(
-                text = "100%",
-                style = TextStyle(color = color)
+                text = stringResource(id = R.string.text_max_percentage),
+                style = textStyle
             )
         }
 

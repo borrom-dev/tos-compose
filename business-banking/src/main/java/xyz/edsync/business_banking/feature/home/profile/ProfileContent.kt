@@ -126,6 +126,7 @@ private fun ItemContent(profileMenu: ProfileMenu) {
                 .fillMaxWidth()
                 .padding(all = 8.dp)
                 .clickable {
+                    // TODO to remove
                     Log.d("@@@", "Profile Row Clicked")
                 },
             verticalAlignment = Alignment.CenterVertically

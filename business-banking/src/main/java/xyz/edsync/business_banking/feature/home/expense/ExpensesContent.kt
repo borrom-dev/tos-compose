@@ -48,7 +48,7 @@ private fun Content() {
                 CardBalanceContent()
                 FilterContent()
                 DefaultText(
-                    text = "Spending Breakdown",
+                    text = stringResource(id = R.string.title_spending_breakdown),
                     fontSize = 20.sp,
                     style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.SemiBold)
                 )
