@@ -30,6 +30,10 @@
     <string name="text_week">Week</string>
     <string name="text_month">Month</string>
     <string name="text_year">Year</string>
+    <string name="text_send_money">Send Money</string>
+    <string name="text_calculation">Calculation</string>
+    <string name="text_min_percentage">0%</string>
+    <string name="text_max_percentage">100%</string>
 
     <string name="title_expenses">Expenses</string>
     <string name="text_card_balance">Card Balance</string>
@@ -64,4 +68,6 @@
     <string name="title_remaining_amount">Remaining Amount</string>
     <string name="label_income">Income</string>
     <string name="label_expense">Expense</string>
+
+    <string name="title_spending_breakdown">Spending Breakdown</string>
 </resources>
