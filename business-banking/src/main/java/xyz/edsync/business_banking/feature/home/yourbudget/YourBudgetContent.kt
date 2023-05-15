@@ -45,7 +45,7 @@ fun YourBudgetContent(modifier: Modifier = Modifier) {
                 topBar = { TopBar() },
                 backgroundColor = Color.Transparent
             ) {
-                Content()
+                Content(it)
             }
         }
     }
@@ -68,7 +68,10 @@ private fun TopBar() {
         DefaultText(
             text = stringResource(id = R.string.title_your_budget),
             fontSize = 20.sp,
-            style = TextStyle(color = ColorYourBudgetTitleTopBar, fontWeight = FontWeight.SemiBold)
+            style = TextStyle(
+                color = ColorYourBudgetTitleTopBar,
+                fontWeight = FontWeight.SemiBold
+            )
         )
     },
         modifier = Modifier.fillMaxWidth(),
@@ -86,7 +89,7 @@ private fun TopBar() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun Content() {
+private fun Content(paddingValues: PaddingValues) {
     val pagerState = rememberPagerState(0)
     val currentPage by remember {
         mutableStateOf(0)

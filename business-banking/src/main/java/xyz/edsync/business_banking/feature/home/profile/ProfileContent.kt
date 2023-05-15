@@ -41,14 +41,14 @@ fun ProfileContent() {
                 topBar = { TopBar() },
                 backgroundColor = Color.Transparent
             ) {
-                Content()
+                Content(it)
             }
         }
     }
 }
 
 @Composable
-private fun Content() {
+private fun Content(paddingValues: PaddingValues) {
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -49,7 +49,6 @@ fun WalletContent() {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun Content(paddingValues: PaddingValues) {
-    val pagerState = rememberPagerState(0)
     val currentPage by remember {
         mutableStateOf(0)
     }
@@ -135,7 +134,7 @@ private fun SendMoneyToContent() {
                         )
                         Spacer(modifier = Modifier.size(8.dp))
                         DefaultText(
-                            text = "Add new contact",
+                            text = stringResource(id = R.string.text_add_new_contact),
                             style = TextStyle(
                                 color = ColorSecondaryText,
                                 fontSize = 13.sp,
