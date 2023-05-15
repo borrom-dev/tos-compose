@@ -34,6 +34,7 @@
     <string name="text_calculation">Calculation</string>
     <string name="text_min_percentage">0%</string>
     <string name="text_max_percentage">100%</string>
+    <string name="text_add_new_contact">Add new contact</string>
 
     <string name="title_expenses">Expenses</string>
     <string name="text_card_balance">Card Balance</string>
