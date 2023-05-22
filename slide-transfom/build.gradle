@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation coreKtxDep
+    implementation lifecycleRuntimeKtxDep
+    implementation activityComposeDep
+    implementation composeUiDep
+    implementation composeUiPreviewDep
+    implementation composeMaterialIconsDep
+    implementation composeMertialDep
+
+    testImplementation junitDep
+    androidTestImplementation junitTestExtDep
+    androidTestImplementation testExpressoCoreDep
+    androidTestImplementation composeUiTestDep
+    debugImplementation composeUiToolDep
+    debugImplementation composeUiTestManifestDep
+
+    // pager
+    implementation accompanistPagerDep
+
+    // internal module
+    implementation project(path: ':common')
+}
