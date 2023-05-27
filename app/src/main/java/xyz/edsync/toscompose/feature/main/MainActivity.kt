@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import xyz.edsync.apple_watch_menu.feature.main.AppleWatchMenuActivity
 import xyz.edsync.business_banking.feature.splash.BusinessBankingSlashActivity
 import xyz.edsync.common.util.listener.ItemClickListener
+import xyz.edsync.slidetransfom.SlideTransformActivity
 import xyz.edsync.toscompose.R
 
 class MainActivity : ComponentActivity(), ItemClickListener<Int> {
@@ -21,6 +22,7 @@ class MainActivity : ComponentActivity(), ItemClickListener<Int> {
         when (item) {
             R.string.banking -> gotoBanking()
             R.string.apple_watch_menu -> goToAppleWatchMenu()
+            R.string.slide_transform -> gotToSlideTransform()
         }
     }
 
@@ -31,6 +33,11 @@ class MainActivity : ComponentActivity(), ItemClickListener<Int> {
 
     private fun goToAppleWatchMenu() {
         val intent = Intent(this, AppleWatchMenuActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun gotToSlideTransform() {
+        val intent = Intent(this, SlideTransformActivity::class.java)
         startActivity(intent)
     }
 
