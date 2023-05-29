@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.common.util.extension.openUrl
 import xyz.edsync.common.util.listener.ItemClickListener
+import xyz.edsync.common.util.model.Menu
 import xyz.edsync.common.util.theme.Orange
 import xyz.edsync.common.util.theme.Teal200
 import xyz.edsync.common.util.ui.DefaultText
@@ -39,7 +40,7 @@ internal fun MainContent(listener: ItemClickListener<Int>) {
         Scaffold(modifier = Modifier.fillMaxSize(), topBar = { TopBar() }, floatingActionButton = {
             FloatingButton { context.openUrl("https://github.com/borrom-dev/tos-compose") }
         }) {
-            Body(menus = Menu.getItems(), listener = listener)
+            Body(paddingValues = it, menus = getMenuItems(), listener = listener)
         }
     }
 }
@@ -76,7 +77,11 @@ private fun FloatingButton(onFloatingActionClick: () -> Unit) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun Body(menus: MutableList<Menu>, listener: ItemClickListener<Int>) {
+private fun Body(
+    paddingValues: PaddingValues,
+    menus: MutableList<Menu>,
+    listener: ItemClickListener<Int>
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -130,7 +135,6 @@ private fun BodyItem(
         }
     }
 }
-
 
 
 @Preview(showBackground = true)
