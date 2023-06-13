@@ -9,8 +9,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
+import androidx.compose.material.TopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.common.util.listener.ItemClickListener
@@ -39,7 +41,7 @@ internal fun SlideTransformContent(listener: ItemClickListener<Int>) {
     TosComposeTheme {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
-
+                TopBar()
             }, floatingActionButton = {
 
             }) {
@@ -47,6 +49,23 @@ internal fun SlideTransformContent(listener: ItemClickListener<Int>) {
         }
     }
 }
+
+@Composable
+private fun TopBar() {
+    TopAppBar(title = {
+        DefaultText(
+            text = "",
+            fontSize = 20.sp,
+            style = TextStyle(color = Color.Black, fontWeight = FontWeight.SemiBold)
+        )
+    },
+        modifier = Modifier.fillMaxWidth(),
+        elevation = 0.dp,
+        backgroundColor = Color.Transparent,
+        actions = {
+        })
+}
+
 
 @Composable
 private fun Body(
@@ -57,9 +76,9 @@ private fun Body(
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
-        items(items = menu.sampleNames) { index ->
+        itemsIndexed(items = menu.sampleNames) { index, item ->
             BodyItem(
-                sampleName = menu.sampleNames[index],
+                sampleName = item,
                 isLastItem = index == menu.sampleNames.size - 1,
                 listener
             )
