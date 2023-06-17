@@ -1,4 +1,4 @@
-package xyz.edsync.slidetransfom
+package xyz.edsync.slidetransfom.feature
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -26,6 +26,7 @@ import xyz.edsync.common.util.listener.ItemClickListener
 import xyz.edsync.common.util.model.Menu
 import xyz.edsync.common.util.theme.Orange
 import xyz.edsync.common.util.ui.DefaultText
+import xyz.edsync.slidetransfom.R
 import xyz.edsync.slidetransfom.ui.theme.TosComposeTheme
 
 private val menus = Menu(
