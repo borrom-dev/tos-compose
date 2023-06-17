@@ -1,4 +1,4 @@
-package xyz.edsync.slidetransfom
+package xyz.edsync.slidetransfom.feature
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
