@@ -1,6 +1,5 @@
 buildscript {
     ext {
-
         // App version
         versionName = '1.0.1'
         versionCode = 1
@@ -9,14 +8,17 @@ buildscript {
         minSdkVersion = 21
         targetSdkVersion = 33
 
-        coreKtxVersion = '1.7.0'
-        lifecycleRuntimeKtxVersion = "2.3.1"
+        coreKtxVersion = '1.10.1'
+        lifecycleRuntimeKtxVersion = "2.6.1"
 
-        activityComposeVersion = "1.3.1"
+        activityComposeVersion = "1.7.2"
+        composeUiVersion = "1.4.3"
+        composeCompiler = "1.4.8"
 
-        composeMaterialVersion = "1.1.1"
+        appcompatVersion = "1.6.1"
+        materialVersion = "1.9.0"
 
-        composeUiVersion = "1.1.1"
+        accompanistPagerVersion = "0.28.0"
 
         coreKtxDep = "androidx.core:core-ktx:$coreKtxVersion"
         lifecycleRuntimeKtxDep = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtxVersion"
@@ -28,15 +30,10 @@ buildscript {
         junitTestExtVersion = "1.1.5"
         testExpressoCoreVersion = "3.5.1"
 
-        appcompatVersion = "1.6.0"
-        materialVersion = "1.7.0"
-
-        accompanistPagerVersion = "0.28.0"
-
         composeUiDep = "androidx.compose.ui:ui:$composeUiVersion"
         composeUiPreviewDep = "androidx.compose.ui:ui-tooling-preview:$composeUiVersion"
         composeMaterialIconsDep = "androidx.compose.material:material-icons-extended:$composeUiVersion"
-        composeMertialDep = "androidx.compose.material:material:$composeMaterialVersion"
+        composeMertialDep = "androidx.compose.material:material:$composeUiVersion"
         composeUiTestDep = "androidx.compose.ui:ui-test-junit4:$composeUiVersion"
         composeUiToolDep = "androidx.compose.ui:ui-tooling:$composeUiVersion"
         composeUiTestManifestDep = "androidx.compose.ui:ui-test-manifest:$composeUiVersion"
@@ -55,7 +52,7 @@ buildscript {
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 plugins {
-    id 'com.android.application' version '7.4.2' apply false
-    id 'com.android.library' version '7.4.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+    id 'com.android.application' version '8.0.2' apply false
+    id 'com.android.library' version '8.0.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.8.22' apply false
 }

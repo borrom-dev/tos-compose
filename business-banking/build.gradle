@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
@@ -14,7 +16,7 @@ android {
         }
     }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
             freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         }
@@ -31,13 +33,14 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion rootProject.composeCompiler
     }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'xyz.edsync.business_banking'
 }
 
 dependencies {
