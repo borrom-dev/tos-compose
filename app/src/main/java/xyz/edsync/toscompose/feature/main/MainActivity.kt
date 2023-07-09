@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import xyz.edsync.apple_watch_menu.feature.main.AppleWatchMenuActivity
 import xyz.edsync.business_banking.feature.splash.BusinessBankingSlashActivity
 import xyz.edsync.common.util.listener.ItemClickListener
-import xyz.edsync.slidetransfom.SlideTransformActivity
+import xyz.edsync.slidetransfom.feature.SlideTransformActivity
 import xyz.edsync.toscompose.R
 
 class MainActivity : ComponentActivity(), ItemClickListener<Int> {
