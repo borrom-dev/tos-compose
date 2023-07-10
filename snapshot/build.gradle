@@ -5,12 +5,11 @@ plugins {
 
 android {
     namespace 'xyz.edsync.snapshot'
-    compileSdk 32
+    compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
-        minSdk 21
-        targetSdk 32
-
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
