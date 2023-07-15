@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.slidetransfom.R
-import xyz.edsync.slidetransfom.ui.theme.TosComposeTheme
+import xyz.edsync.toscompose.theme.TosComposeTheme
 
 @Composable
 internal fun SlideStackContent() {
