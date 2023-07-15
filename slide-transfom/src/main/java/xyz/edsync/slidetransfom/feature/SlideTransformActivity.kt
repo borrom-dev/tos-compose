@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import xyz.edsync.common.util.listener.ItemClickListener
-import xyz.edsync.slidetransfom.ui.theme.TosComposeTheme
+import xyz.edsync.toscompose.theme.TosComposeTheme
 
 class SlideTransformActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

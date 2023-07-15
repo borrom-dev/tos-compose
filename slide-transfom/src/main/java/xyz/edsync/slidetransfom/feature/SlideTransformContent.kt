@@ -11,9 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
+import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,7 +26,7 @@ import xyz.edsync.common.util.model.Menu
 import xyz.edsync.common.util.theme.Orange
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.slidetransfom.R
-import xyz.edsync.slidetransfom.ui.theme.TosComposeTheme
+import xyz.edsync.toscompose.theme.TosComposeTheme
 
 private val menus = Menu(
     title = 0,
@@ -36,7 +35,6 @@ private val menus = Menu(
     }
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SlideTransformContent(listener: ItemClickListener<Int>) {
     TosComposeTheme {
