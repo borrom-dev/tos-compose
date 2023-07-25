@@ -6,6 +6,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -14,14 +15,20 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.common.util.extension.openUrl
@@ -32,6 +39,7 @@ import xyz.edsync.common.util.theme.Teal200
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.toscompose.R
 import xyz.edsync.toscompose.theme.TosComposeTheme
+import kotlin.math.roundToInt
 
 @Composable
 internal fun MainContent(listener: ItemClickListener<Int>) {
@@ -40,7 +48,31 @@ internal fun MainContent(listener: ItemClickListener<Int>) {
         Scaffold(modifier = Modifier.fillMaxSize(), topBar = { TopBar() }, floatingActionButton = {
             FloatingButton { context.openUrl("https://github.com/borrom-dev/tos-compose") }
         }) {
-            Body(paddingValues = it, menus = getMenuItems(), listener = listener)
+            DraggableTextLowLevel(it)
+        }
+    }
+}
+
+@Composable
+private fun DraggableTextLowLevel(paddingValues: PaddingValues) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        var offsetX by remember { mutableStateOf(0f) }
+        var offsetY by remember { mutableStateOf(0f) }
+
+        Box(
+            Modifier
+                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                .background(Color.Blue)
+                .size(50.dp)
+                .pointerInput(Unit) {
+                    detectDragGestures { change, dragAmount ->
+                        change.consume()
+                        offsetX += dragAmount.x
+                        offsetY += dragAmount.y
+                    }
+                }
+        ) {
+            Image(painter = painterResource(id = R.drawable.ic_github), contentDescription = "")
         }
     }
 }

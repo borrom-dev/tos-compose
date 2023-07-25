@@ -51,7 +51,9 @@ dependencies {
     implementation composeUiPreviewDep
     implementation composeMaterialIconsDep
     implementation composeMertialDep
-    implementation 'androidx.compose.ui:ui-graphics'
+    implementation composeUiUtilDep
+    implementation composeUiGraphicDep
+    implementation composeCoilDep
 
     testImplementation junitDep
     androidTestImplementation junitTestExtDep
