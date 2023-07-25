@@ -14,6 +14,7 @@ buildscript {
         activityComposeVersion = "1.7.2"
         composeUiVersion = "1.4.3"
         composeCompiler = "1.4.8"
+        composeCoilVersion = "2.4.0"
 
         appcompatVersion = "1.6.1"
         materialVersion = "1.9.0"
@@ -30,6 +31,9 @@ buildscript {
         junitTestExtVersion = "1.1.5"
         testExpressoCoreVersion = "3.5.1"
 
+        composeCoilDep = "io.coil-kt:coil-compose:$composeCoilVersion"
+        composeUiGraphicDep = "androidx.compose.ui:ui-graphics:$composeUiVersion"
+        composeUiUtilDep = "androidx.compose.ui:ui-util:$composeUiVersion"
         composeUiDep = "androidx.compose.ui:ui:$composeUiVersion"
         composeUiPreviewDep = "androidx.compose.ui:ui-tooling-preview:$composeUiVersion"
         composeMaterialIconsDep = "androidx.compose.material:material-icons-extended:$composeUiVersion"
