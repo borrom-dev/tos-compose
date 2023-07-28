@@ -34,14 +34,14 @@ fun ExpenseContent() {
                 topBar = { TopBar() },
                 backgroundColor = ColorBackground
             ) {
-                Content()
+                Content(it)
             }
         }
     }
 }
 
 @Composable
-private fun Content() {
+private fun Content(paddingValues: PaddingValues) {
     LazyColumn {
         item {
             Column(modifier = Modifier.padding(horizontal = 16.dp)) {

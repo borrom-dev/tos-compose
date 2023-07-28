@@ -1,0 +1,4 @@
+<resources>
+    <string name="title_activity_start_quiz">StartQuizActivity</string>
+    <string name="title_activity_home_quiz">HomeQuizActivity</string>
+</resources>
