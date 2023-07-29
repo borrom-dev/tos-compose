@@ -1,4 +1,4 @@
-package com.vuthisak.quiz_game.feature.start
+package xyz.edsync.quiz_game.feature.start
 
 import StartQuizContent
 import android.os.Bundle

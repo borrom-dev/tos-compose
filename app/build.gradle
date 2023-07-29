@@ -77,4 +77,5 @@ dependencies {
     implementation project(':business-banking')
     implementation project(':apple-watch-menu')
     implementation project(':slide-transfom')
+    implementation project(':quiz-game')
 }

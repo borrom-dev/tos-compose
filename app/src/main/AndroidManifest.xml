@@ -14,7 +14,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name="xyz.edsync.slidetransfom.SlideTransformActivity"
+            android:name="xyz.edsync.slidetransfom.feature.SlideTransformActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.TosCompose" />
@@ -25,6 +25,15 @@
             android:label=""
             android:theme="@style/Theme.TosCompose" />
 
+        <!-- Quiz Question -->
+        <activity
+            android:name="xyz.edsync.quiz_game.feature.start.StartQuizActivity"
+            android:exported="false"
+            android:label=""
+            android:theme="@style/Theme.TosCompose" />
+        <!-- End Quiz Question -->
+
+        <!-- Business Banking -->
         <activity
             android:name="xyz.edsync.business_banking.feature.home.HomeActivity"
             android:exported="false"
@@ -48,6 +57,7 @@
             android:exported="true"
             android:label=""
             android:theme="@style/Theme.BusinessBanking" />
+        <!-- End Business Banking -->
 
         <activity
             android:name=".feature.main.MainActivity"

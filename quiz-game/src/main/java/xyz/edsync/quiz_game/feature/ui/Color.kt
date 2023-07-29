@@ -1,4 +1,4 @@
-package com.vuthisak.quiz_game.feature.ui
+package xyz.edsync.quiz_game.feature.ui
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color

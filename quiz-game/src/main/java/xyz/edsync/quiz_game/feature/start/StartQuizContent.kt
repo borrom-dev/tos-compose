@@ -15,10 +15,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.vuthisak.quiz_game.R
-import com.vuthisak.quiz_game.feature.ui.BackgroundColor
-import com.vuthisak.quiz_game.feature.ui.DetailTextColor
-import com.vuthisak.quiz_game.feature.ui.PrimaryTextColor
+import com.edsync.quiz_game.R
+import xyz.edsync.quiz_game.feature.ui.BackgroundColor
+import xyz.edsync.quiz_game.feature.ui.DetailTextColor
+import xyz.edsync.quiz_game.feature.ui.PrimaryTextColor
 import xyz.edsync.common.util.ui.DefaultText
 
 @OptIn(ExperimentalFoundationApi::class)
