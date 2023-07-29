@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import xyz.edsync.quiz_game.feature.start.StartQuizActivity
 import xyz.edsync.apple_watch_menu.feature.main.AppleWatchMenuActivity
 import xyz.edsync.business_banking.feature.splash.BusinessBankingSlashActivity
 import xyz.edsync.common.util.listener.ItemClickListener
@@ -21,24 +22,34 @@ class MainActivity : ComponentActivity(), ItemClickListener<Int> {
     override fun onItemClicked(item: Int) {
         when (item) {
             R.string.banking -> gotoBanking()
+            R.string.quiz_question -> gotoQuizQuestion()
             R.string.apple_watch_menu -> goToAppleWatchMenu()
             R.string.slide_transform -> gotToSlideTransform()
         }
     }
 
+    private fun gotoQuizQuestion() {
+        Intent(this, StartQuizActivity::class.java).apply {
+            startActivity(this)
+        }
+    }
+
     private fun gotoBanking() {
-        val intent = Intent(this, BusinessBankingSlashActivity::class.java)
-        startActivity(intent)
+        Intent(this, BusinessBankingSlashActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
     private fun goToAppleWatchMenu() {
-        val intent = Intent(this, AppleWatchMenuActivity::class.java)
-        startActivity(intent)
+        Intent(this, AppleWatchMenuActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
     private fun gotToSlideTransform() {
-        val intent = Intent(this, SlideTransformActivity::class.java)
-        startActivity(intent)
+        Intent(this, SlideTransformActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
 }

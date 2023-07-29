@@ -1,30 +1,20 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'xyz.edsync.toscompose'
+    namespace 'xyz.edsync.quiz_game'
     compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
-        applicationId "xyz.edsync.toscompose"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
-        versionCode rootProject.versionCode
-        versionName rootProject.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
         vectorDrawables {
             useSupportLibrary true
-        }
-    }
-
-    tasks.withType(KotlinCompile).configureEach {
-        kotlinOptions {
-            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         }
     }
 
@@ -45,9 +35,9 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion rootProject.composeCompiler
+        kotlinCompilerExtensionVersion '1.4.3'
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
@@ -55,6 +45,9 @@ android {
 }
 
 dependencies {
+    // internal module
+    implementation project(path: ':common')
+
     implementation coreKtxDep
     implementation lifecycleRuntimeKtxDep
     implementation activityComposeDep
@@ -69,13 +62,4 @@ dependencies {
     androidTestImplementation composeUiTestDep
     debugImplementation composeUiToolDep
     debugImplementation composeUiTestManifestDep
-
-    // internal module
-    implementation project(':common')
-    implementation project(':shape')
-    implementation project(':background')
-    implementation project(':business-banking')
-    implementation project(':apple-watch-menu')
-    implementation project(':slide-transfom')
-    implementation project(':quiz-game')
 }

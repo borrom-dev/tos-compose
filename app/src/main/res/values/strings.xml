@@ -3,6 +3,7 @@
 
     <string name="template">Template</string>
     <string name="banking">Banking</string>
+    <string name="quiz_question">Quiz Question</string>
     <string name="apple_watch_menu">Testing Apple Watch Menu</string>
 
     <string name="general">General</string>
