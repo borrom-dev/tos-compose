@@ -1,4 +1,7 @@
 <resources>
     <string name="title_activity_start_quiz">StartQuizActivity</string>
     <string name="title_activity_home_quiz">HomeQuizActivity</string>
+
+    <string name="text_title_start">Interest QUIZ Awaits You</string>
+    <string name="text_desc_start">play quizzes with your friends and get various prizes</string>
 </resources>
