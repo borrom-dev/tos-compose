@@ -4,4 +4,5 @@
 
     <string name="text_title_start">Interest QUIZ Awaits You</string>
     <string name="text_desc_start">play quizzes with your friends and get various prizes</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
