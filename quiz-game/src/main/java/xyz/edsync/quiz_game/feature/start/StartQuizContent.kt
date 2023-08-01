@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import xyz.edsync.common.util.extension.textSizeResource
 import xyz.edsync.common.util.ui.DefaultText
+import xyz.edsync.common.util.ui.DotsIndicator
 import xyz.edsync.quiz_game.R
 import xyz.edsync.quiz_game.R.drawable
 import xyz.edsync.quiz_game.feature.ui.BackgroundColor
@@ -77,6 +78,8 @@ internal fun StartQuizContent() {
                                 textAlign = TextAlign.Center
                             )
                         )
+
+                        DotsIndicator(totalDots = 3, selectedIndex = it)
                     }
                 }
             }
