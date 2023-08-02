@@ -1,10 +1,15 @@
+
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,19 +26,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import xyz.edsync.common.util.extension.textSizeResource
 import xyz.edsync.common.util.ui.DefaultText
-import xyz.edsync.common.util.ui.DotsIndicator
+import xyz.edsync.common.util.ui.LinesIndicator
 import xyz.edsync.quiz_game.R
 import xyz.edsync.quiz_game.R.drawable
 import xyz.edsync.quiz_game.feature.ui.BackgroundColor
 import xyz.edsync.quiz_game.feature.ui.DetailTextColor
+import xyz.edsync.quiz_game.feature.ui.PrimaryColor
 import xyz.edsync.quiz_game.feature.ui.PrimaryTextColor
+import xyz.edsync.quiz_game.feature.ui.UnselectedColor
 import xyz.edsync.common.R as CR
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun StartQuizContent() {
+    val dp8 = dimensionResource(id = CR.dimen.dp_8)
     val dp24 = dimensionResource(id = CR.dimen.dp_24)
     val dp46 = dimensionResource(id = CR.dimen.dp_46)
+
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -48,7 +57,8 @@ internal fun StartQuizContent() {
             HorizontalPager(pageCount = 3) {
                 Card(
                     modifier = Modifier.padding(horizontal = dp24),
-                    shape = RoundedCornerShape(dimensionResource(id = CR.dimen.dp_40))
+                    shape = RoundedCornerShape(dimensionResource(id = CR.dimen.dp_40)),
+                    elevation = dimensionResource(id = CR.dimen.dp_26)
                 ) {
                     Column(
                         modifier = Modifier
@@ -68,7 +78,7 @@ internal fun StartQuizContent() {
                         )
                         DefaultText(
                             modifier = Modifier.padding(
-                                top = dimensionResource(id = CR.dimen.dp_8),
+                                top = dp8,
                                 start = dp46,
                                 end = dp46
                             ),
@@ -79,7 +89,16 @@ internal fun StartQuizContent() {
                             )
                         )
 
-                        DotsIndicator(totalDots = 3, selectedIndex = it)
+                        Spacer(modifier = Modifier.size(dimensionResource(id = CR.dimen.dp_12)))
+                        LinesIndicator(
+                            totalDots = 3,
+                            selectedIndex = it,
+                            selectedColor = PrimaryColor,
+                            unSelectedColor = UnselectedColor,
+                            dotModifier = Modifier
+                                .width(dimensionResource(id = CR.dimen.dp_20))
+                                .height(dimensionResource(id = CR.dimen.dp_5))
+                        )
                     }
                 }
             }
