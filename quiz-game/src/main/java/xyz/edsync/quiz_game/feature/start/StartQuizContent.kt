@@ -1,7 +1,7 @@
-
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,11 +28,11 @@ import xyz.edsync.common.util.extension.textSizeResource
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.LinesIndicator
 import xyz.edsync.quiz_game.R
-import xyz.edsync.quiz_game.R.drawable
 import xyz.edsync.quiz_game.feature.ui.BackgroundColor
 import xyz.edsync.quiz_game.feature.ui.DetailTextColor
 import xyz.edsync.quiz_game.feature.ui.PrimaryColor
 import xyz.edsync.quiz_game.feature.ui.PrimaryTextColor
+import xyz.edsync.quiz_game.feature.ui.SmallButton
 import xyz.edsync.quiz_game.feature.ui.UnselectedColor
 import xyz.edsync.common.R as CR
 
@@ -51,54 +51,62 @@ internal fun StartQuizContent() {
         ) {
             Image(
                 modifier = Modifier.padding(top = dp46),
-                painter = painterResource(id = drawable.ic_start_questions),
+                painter = painterResource(id = R.drawable.ic_start_questions),
                 contentDescription = "Start Logo"
             )
-            HorizontalPager(pageCount = 3) {
-                Card(
-                    modifier = Modifier.padding(horizontal = dp24),
-                    shape = RoundedCornerShape(dimensionResource(id = CR.dimen.dp_40)),
-                    elevation = dimensionResource(id = CR.dimen.dp_26)
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .padding(vertical = dp24)
-                            .fillMaxWidth()
-                            .wrapContentHeight(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+            Box {
+                HorizontalPager(pageCount = 3) {
+                    Card(
+                        modifier = Modifier.padding(horizontal = dp24),
+                        shape = RoundedCornerShape(dimensionResource(id = CR.dimen.dp_40)),
+                        elevation = dimensionResource(id = CR.dimen.dp_26)
                     ) {
-                        DefaultText(
-                            modifier = Modifier.padding(horizontal = dp24),
-                            text = stringResource(id = R.string.text_title_start),
-                            fontSize = textSizeResource(id = CR.dimen.sp_24),
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                color = PrimaryTextColor
+                        Column(
+                            modifier = Modifier
+                                .padding(vertical = dp24)
+                                .fillMaxWidth()
+                                .wrapContentHeight(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            DefaultText(
+                                modifier = Modifier.padding(horizontal = dp24),
+                                text = stringResource(id = R.string.text_title_start),
+                                fontSize = textSizeResource(id = CR.dimen.sp_24),
+                                style = TextStyle(
+                                    fontWeight = FontWeight.Bold,
+                                    color = PrimaryTextColor
+                                )
                             )
-                        )
-                        DefaultText(
-                            modifier = Modifier.padding(
-                                top = dp8,
-                                start = dp46,
-                                end = dp46
-                            ),
-                            text = stringResource(id = R.string.text_desc_start),
-                            style = TextStyle(
-                                color = DetailTextColor,
-                                textAlign = TextAlign.Center
+                            DefaultText(
+                                modifier = Modifier.padding(
+                                    top = dp8,
+                                    start = dp46,
+                                    end = dp46
+                                ),
+                                text = stringResource(id = R.string.text_desc_start),
+                                style = TextStyle(
+                                    color = DetailTextColor,
+                                    textAlign = TextAlign.Center
+                                )
                             )
-                        )
 
-                        Spacer(modifier = Modifier.size(dimensionResource(id = CR.dimen.dp_12)))
-                        LinesIndicator(
-                            totalDots = 3,
-                            selectedIndex = it,
-                            selectedColor = PrimaryColor,
-                            unSelectedColor = UnselectedColor,
-                            dotModifier = Modifier
-                                .width(dimensionResource(id = CR.dimen.dp_20))
-                                .height(dimensionResource(id = CR.dimen.dp_5))
-                        )
+                            Spacer(modifier = Modifier.size(dimensionResource(id = CR.dimen.dp_12)))
+                            LinesIndicator(
+                                totalDots = 3,
+                                selectedIndex = it,
+                                selectedColor = PrimaryColor,
+                                unSelectedColor = UnselectedColor,
+                                dotModifier = Modifier
+                                    .width(dimensionResource(id = CR.dimen.dp_20))
+                                    .height(dimensionResource(id = CR.dimen.dp_5))
+                            )
+                        }
+                    }
+                    SmallButton(
+                        modifier = Modifier.align(Alignment.BottomCenter),
+                        painter = painterResource(id = R.drawable.icon_arrow_right)
+                    ) {
+                        // TODO on Click
                     }
                 }
             }

@@ -14,8 +14,8 @@ fun SmallButton(
 ) {
 
     Button(
-        modifier = Modifier,
-        onClick = onClick
+        modifier = modifier,
+        onClick = onClick,
     ) {
         Image(painter = painter, contentDescription = "ButtonImage")
     }
