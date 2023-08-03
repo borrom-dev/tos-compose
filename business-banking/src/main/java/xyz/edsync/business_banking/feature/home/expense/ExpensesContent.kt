@@ -1,12 +1,26 @@
 package xyz.edsync.business_banking.feature.home.expense
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +34,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.ui.theme.*
+import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
+import xyz.edsync.business_banking.ui.theme.ColorBackground
+import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
+import xyz.edsync.business_banking.ui.theme.ColorExpense
+import xyz.edsync.business_banking.ui.theme.ColorIncome
+import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
 import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
@@ -32,7 +51,7 @@ fun ExpenseContent() {
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 topBar = { TopBar() },
-                backgroundColor = ColorBackground
+                containerColor = ColorBackground
             ) {
                 Content(it)
             }
@@ -77,7 +96,7 @@ private fun FilterContent() {
 private fun SpendingBreakDownItem() {
     Card(
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp),
-        backgroundColor = Color.White,
+        colors = CardDefaults.cardColors(Color.White),
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(
@@ -176,6 +195,7 @@ private fun ExpenseRow() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar() {
     TopAppBar(title = {
@@ -186,8 +206,6 @@ private fun TopBar() {
         )
     },
         modifier = Modifier.fillMaxWidth(),
-        elevation = 0.dp,
-        backgroundColor = Color.Transparent,
         actions = {
             IconButton(onClick = { }) {
                 Image(

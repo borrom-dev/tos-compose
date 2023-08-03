@@ -9,7 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Surface
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,8 +20,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.feature.intro.BusinessBankingIntroActivity
-import xyz.edsync.business_banking.feature.intro.BusinessBankingIntroContent
-import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
 

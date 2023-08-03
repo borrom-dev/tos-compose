@@ -6,13 +6,21 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.Divider
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,10 +36,9 @@ import xyz.edsync.common.util.extension.openUrl
 import xyz.edsync.common.util.listener.ItemClickListener
 import xyz.edsync.common.util.model.Menu
 import xyz.edsync.common.util.theme.Orange
-import xyz.edsync.common.util.theme.Teal200
+import xyz.edsync.common.util.theme.TosComposeTheme
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.toscompose.R
-import xyz.edsync.toscompose.theme.TosComposeTheme
 
 @Composable
 internal fun MainContent(listener: ItemClickListener<Int>) {
@@ -45,6 +52,7 @@ internal fun MainContent(listener: ItemClickListener<Int>) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar() {
     TopAppBar(title = {
@@ -56,8 +64,6 @@ private fun TopBar() {
         )
     },
         modifier = Modifier.fillMaxWidth(),
-        elevation = 0.dp,
-        backgroundColor = Teal200,
         actions = {
 
         })

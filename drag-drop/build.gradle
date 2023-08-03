@@ -35,7 +35,7 @@ dependencies {
     implementation coreKtxDep
     implementation lifecycleRuntimeKtxDep
     implementation appcompatDep
-    implementation materialDep
+    implementation composeMaterial3Dep
 
     testImplementation junitDep
     androidTestImplementation junitTestExtDep

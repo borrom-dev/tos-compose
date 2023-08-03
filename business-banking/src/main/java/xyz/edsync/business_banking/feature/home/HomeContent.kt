@@ -3,10 +3,22 @@ package xyz.edsync.business_banking.feature.home
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,8 +41,8 @@ import xyz.edsync.business_banking.feature.home.yourbudget.YourBudgetContent
 import xyz.edsync.business_banking.model.TabInfo
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
 import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
+import xyz.edsync.common.util.theme.TosComposeTheme
 import xyz.edsync.common.util.ui.DefaultText
-import xyz.edsync.toscompose.theme.TosComposeTheme
 
 @Composable
 internal fun HomeContent() {
@@ -59,9 +71,9 @@ private fun Body() {
     ) {
         Card(
             modifier = Modifier.fillMaxWidth(),
-            backgroundColor = Color.White,
+            colors = CardDefaults.cardColors(containerColor = Color.White),
             shape = RoundedCornerShape(0.dp),
-            elevation = 8.dp
+            elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Box {
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -94,7 +106,7 @@ private fun TabContent(
         TabRow(
             modifier = Modifier.align(Alignment.Center),
             selectedTabIndex = selectedTabIndex,
-            backgroundColor = Color.White
+            containerColor = Color.White
         ) {
             tabs.forEachIndexed { index, tabInfo ->
                 Tab(selected = selectedTabIndex == index, onClick = {

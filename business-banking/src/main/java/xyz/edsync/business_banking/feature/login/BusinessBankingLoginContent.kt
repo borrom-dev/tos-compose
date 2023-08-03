@@ -5,12 +5,31 @@ import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -44,18 +63,17 @@ fun LoginContent(onBackPressed: () -> Unit) {
                 modifier = Modifier.fillMaxSize(),
                 topBar = { TopBar(onBackPressed) },
             ) {
-                Content()
+                Content(it)
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar(onBackPressed: () -> Unit) {
     TopAppBar(title = {},
         modifier = Modifier.fillMaxWidth(),
-        elevation = 0.dp,
-        backgroundColor = Color.White,
         navigationIcon = {
             IconButton(onClick = onBackPressed) {
                 Image(
@@ -70,7 +88,7 @@ private fun TopBar(onBackPressed: () -> Unit) {
 }
 
 @Composable
-fun Content() {
+fun Content(paddingValues: PaddingValues) {
     val username = remember {
         mutableStateOf("")
     }
@@ -217,8 +235,8 @@ fun LoginWithFacebookOrGoogle() {
                 .weight(1F)
                 .height(40.dp)
                 .background(Color.White),
-            backgroundColor = Color.White,
-            elevation = 0.dp,
+            colors = CardDefaults.cardColors(Color.White),
+            elevation = CardDefaults.cardElevation(0.dp),
             border = BorderStroke(1.dp, Color(0xFF77869E)),
             shape = RoundedCornerShape(6.dp)
         ) {
@@ -239,8 +257,8 @@ fun LoginWithFacebookOrGoogle() {
                 .weight(1F)
                 .height(40.dp)
                 .background(Color.White),
-            backgroundColor = Color.White,
-            elevation = 0.dp,
+            colors = CardDefaults.cardColors(Color.White),
+            elevation = CardDefaults.cardElevation(0.dp),
             border = BorderStroke(1.dp, Color(0xFF77869E)),
             shape = RoundedCornerShape(6.dp)
         ) {

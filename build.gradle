@@ -16,7 +16,7 @@ buildscript {
         composeCompiler = "1.4.3"
 
         appcompatVersion = "1.6.1"
-        materialVersion = "1.9.0"
+        material3Version = "1.1.1"
 
         accompanistPagerVersion = "0.28.0"
 
@@ -33,7 +33,7 @@ buildscript {
         composeUiDep = "androidx.compose.ui:ui:$composeUiVersion"
         composeUiPreviewDep = "androidx.compose.ui:ui-tooling-preview:$composeUiVersion"
         composeMaterialIconsDep = "androidx.compose.material:material-icons-extended:$composeUiVersion"
-        composeMertialDep = "androidx.compose.material:material:$composeUiVersion"
+        composeMaterial3Dep = "androidx.compose.material3:material3:$material3Version"
         composeUiTestDep = "androidx.compose.ui:ui-test-junit4:$composeUiVersion"
         composeUiToolDep = "androidx.compose.ui:ui-tooling:$composeUiVersion"
         composeUiTestManifestDep = "androidx.compose.ui:ui-test-manifest:$composeUiVersion"
@@ -43,7 +43,6 @@ buildscript {
         testExpressoCoreDep = "androidx.test.espresso:espresso-core:$testExpressoCoreVersion"
 
         appcompatDep = "androidx.appcompat:appcompat:$appcompatVersion"
-        materialDep = "com.google.android.material:material:$materialVersion"
 
         accompanistPagerDep = "com.google.accompanist:accompanist-pager:$accompanistPagerVersion"
 

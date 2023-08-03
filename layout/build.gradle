@@ -34,7 +34,7 @@ dependencies {
 
     implementation coreKtxDep
     implementation appcompatDep
-    implementation materialDep
+    implementation composeMaterial3Dep
 
     testImplementation junitDep
     androidTestImplementation junitTestExtDep

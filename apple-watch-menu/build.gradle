@@ -43,7 +43,7 @@ dependencies {
     implementation composeUiDep
     implementation composeUiPreviewDep
     implementation composeMaterialIconsDep
-    implementation composeMertialDep
+    implementation composeMaterial3Dep
 
     testImplementation junitDep
     androidTestImplementation junitTestExtDep
