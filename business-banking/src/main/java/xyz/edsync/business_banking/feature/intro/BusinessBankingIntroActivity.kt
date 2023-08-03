@@ -18,8 +18,9 @@ class BusinessBankingIntroActivity : ComponentActivity() {
     }
 
     private fun gotoHomeScreen() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
+        Intent(this, HomeActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
 }

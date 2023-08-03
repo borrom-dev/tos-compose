@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,6 +31,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -50,6 +52,9 @@ import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.feature.home.HomeActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
+import xyz.edsync.business_banking.ui.theme.ColorPrimary
+import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
+import xyz.edsync.business_banking.ui.theme.ColorYourBudgetTitleTopBar
 import xyz.edsync.business_banking.utils.getDefaultTextFieldColors
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.TextInputField
@@ -82,6 +87,7 @@ private fun TopBar(onBackPressed: () -> Unit) {
                 )
             }
         },
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
         actions = {
 
         })
@@ -144,7 +150,7 @@ private fun RememberMeAndForgotPassword() {
             DefaultText(
                 text = stringResource(id = R.string.text_remember_me),
                 fontSize = 13.sp,
-                style = TextStyle(color = Color(0xFF77869E))
+                style = TextStyle(color = ColorSecondaryText)
             )
         }
         DefaultText(
@@ -172,6 +178,8 @@ private fun LoginButton() {
         .fillMaxWidth()
         .padding(horizontal = 16.dp)
         .height(48.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = ColorPrimary),
+        shape = RoundedCornerShape(8.dp),
         onClick = { gotoHomeScreen(context) }
     ) {
         DefaultText(
@@ -189,9 +197,9 @@ private fun SignupText() {
     ) {
         DefaultText(
             text = stringResource(id = R.string.text_dont_have_a_acount),
-            style = TextStyle(color = Color(0xFFD8D8D8))
+            style = TextStyle(color = ColorYourBudgetTitleTopBar)
         )
-        Spacer(modifier = Modifier.size(4.dp))
+        Spacer(modifier = Modifier.size(8.dp))
         DefaultText(
             text = stringResource(id = R.string.text_sign_up),
             style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.Bold)
@@ -260,7 +268,7 @@ fun LoginWithFacebookOrGoogle() {
                 .background(Color.White),
             colors = CardDefaults.cardColors(Color.White),
             elevation = CardDefaults.cardElevation(0.dp),
-            border = BorderStroke(1.dp, Color(0xFF77869E)),
+            border = BorderStroke(1.dp, ColorSecondaryText),
             shape = RoundedCornerShape(6.dp)
         ) {
             Column(
@@ -278,8 +286,9 @@ fun LoginWithFacebookOrGoogle() {
 }
 
 private fun gotoHomeScreen(context: Context) {
-    val intent = Intent(context, HomeActivity::class.java)
-    context.startActivity(intent)
+    Intent(context, HomeActivity::class.java).apply {
+        context.startActivity(this)
+    }
 }
 
 @Preview

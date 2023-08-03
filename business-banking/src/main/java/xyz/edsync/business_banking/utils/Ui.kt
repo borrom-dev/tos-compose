@@ -15,5 +15,9 @@ fun getDefaultTextFieldColors() =
         focusedIndicatorColor = ColorSecondary,
         unfocusedIndicatorColor = Color(0xFFD8D8D8),
         unfocusedLabelColor = Color(0xFF77869E),
-        focusedLabelColor = Color(0xFF77869E)
+        focusedLabelColor = Color(0xFF77869E),
+        disabledContainerColor = Color.Transparent,
+        errorContainerColor = Color.Transparent,
+        focusedContainerColor = Color.Transparent,
+        unfocusedContainerColor = Color.Transparent
     )
