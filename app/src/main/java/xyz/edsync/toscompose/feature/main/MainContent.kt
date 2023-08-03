@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -23,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -55,23 +57,26 @@ internal fun MainContent(listener: ItemClickListener<Int>) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar() {
-    TopAppBar(title = {
-        DefaultText(
-            text = stringResource(id = R.string.app_name), fontSize = 20.sp, style = TextStyle(
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
+    TopAppBar(
+        title = {
+            DefaultText(
+                text = stringResource(id = R.string.app_name), fontSize = 20.sp, style = TextStyle(
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                )
             )
-        )
-    },
-        modifier = Modifier.fillMaxWidth(),
-        actions = {
-
-        })
+        },
+        modifier = Modifier.fillMaxWidth()
+    )
 }
 
 @Composable
 private fun FloatingButton(onFloatingActionClick: () -> Unit) {
-    FloatingActionButton(onClick = onFloatingActionClick) {
+    FloatingActionButton(
+        modifier = Modifier
+            .clip(CircleShape),
+        onClick = onFloatingActionClick
+    ) {
         Image(
             modifier = Modifier.size(46.dp),
             painter = painterResource(id = R.drawable.ic_github),
@@ -89,7 +94,9 @@ private fun Body(
     listener: ItemClickListener<Int>
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
     ) {
         menus.forEach { item ->
             stickyHeader { Header(title = item.title) }

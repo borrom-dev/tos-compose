@@ -97,6 +97,7 @@ fun Content(paddingValues: PaddingValues) {
     }
     Column(
         modifier = Modifier
+            .padding(paddingValues)
             .fillMaxSize()
             .background(color = Color.White)
     ) {

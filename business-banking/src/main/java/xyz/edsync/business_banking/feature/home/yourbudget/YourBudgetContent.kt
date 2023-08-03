@@ -135,7 +135,7 @@ private fun Content(paddingValues: PaddingValues) {
     )
     LazyColumn(
         modifier = Modifier
-            .padding(horizontal = 16.dp)
+            .padding(paddingValues)
             .fillMaxSize()
     ) {
         item {
