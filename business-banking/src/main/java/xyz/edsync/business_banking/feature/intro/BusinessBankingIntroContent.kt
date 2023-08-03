@@ -83,6 +83,7 @@ private fun Content(paddingValues: PaddingValues) {
     val pagerState = rememberPagerState()
     Box(
         modifier = Modifier
+            .padding(paddingValues)
             .fillMaxSize()
             .background(color = Color.White)
     ) {

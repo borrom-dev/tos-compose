@@ -69,6 +69,7 @@ fun ProfileContent() {
 private fun Content(paddingValues: PaddingValues) {
     Column(
         modifier = Modifier
+            .padding(paddingValues)
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {

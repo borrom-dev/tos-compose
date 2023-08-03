@@ -82,7 +82,9 @@ private fun Content(paddingValues: PaddingValues) {
         stringResource(id = R.string.text_month),
         stringResource(id = R.string.text_year)
     )
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(modifier = Modifier
+        .fillMaxSize()
+        .padding(paddingValues)) {
         item {
             CardContent()
             AmountContent()

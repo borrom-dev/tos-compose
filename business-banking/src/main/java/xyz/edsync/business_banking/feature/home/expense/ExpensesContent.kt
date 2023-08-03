@@ -61,7 +61,7 @@ fun ExpenseContent() {
 
 @Composable
 private fun Content(paddingValues: PaddingValues) {
-    LazyColumn {
+    LazyColumn(modifier = Modifier.padding(paddingValues)) {
         item {
             Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                 CardBalanceContent()
@@ -83,7 +83,7 @@ private fun Content(paddingValues: PaddingValues) {
 @Composable
 private fun FilterContent() {
     val months = stringArrayResource(id = R.array.months)
-    Row() {
+    Row {
         LazyRow(content = {
             items(months) {
 
