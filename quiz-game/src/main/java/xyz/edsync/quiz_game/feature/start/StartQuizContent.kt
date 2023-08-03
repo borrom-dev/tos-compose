@@ -58,8 +58,7 @@ internal fun StartQuizContent() {
                 HorizontalPager(pageCount = 3) {
                     Card(
                         modifier = Modifier.padding(horizontal = dp24),
-                        shape = RoundedCornerShape(dimensionResource(id = CR.dimen.dp_40)),
-                        elevation = dimensionResource(id = CR.dimen.dp_26)
+                        shape = RoundedCornerShape(dimensionResource(id = CR.dimen.dp_40))
                     ) {
                         Column(
                             modifier = Modifier
