@@ -2,6 +2,7 @@ package xyz.edsync.business_banking.feature.intro
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,9 +17,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -43,6 +47,7 @@ import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.feature.login.BusinessBankingLoginActivity
 import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
+import xyz.edsync.business_banking.ui.theme.ColorPrimary
 import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.DotsIndicator
@@ -174,17 +179,32 @@ private fun Buttons(modifier: Modifier = Modifier) {
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Button(modifier = Modifier.weight(1F), onClick = { gotoLoginScreen(context) }) {
+        Button(
+            modifier = Modifier
+                .weight(1F)
+                .width(0.dp)
+                .height(48.dp),
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = ColorPrimary),
+            contentPadding = ButtonDefaults.ButtonWithIconContentPadding,
+            onClick = { gotoLoginScreen(context) }) {
             DefaultText(
                 text = stringResource(id = R.string.btn_login),
                 style = TextStyle(color = Color.White)
             )
         }
         Spacer(modifier = Modifier.size(8.dp))
-        Button(modifier = Modifier.weight(1F), onClick = { }) {
+        OutlinedButton(modifier = Modifier
+            .weight(1F)
+            .width(0.dp)
+            .height(48.dp),
+            shape = RoundedCornerShape(8.dp),
+            border = BorderStroke(width = 1.dp, color = ColorSecondaryText),
+            contentPadding = ButtonDefaults.ButtonWithIconContentPadding,
+            onClick = { }) {
             DefaultText(
                 text = stringResource(id = R.string.text_sign_up),
-                style = TextStyle(color = Color.White)
+                style = TextStyle(color = ColorSecondaryText)
             )
         }
     }

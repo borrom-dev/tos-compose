@@ -38,8 +38,9 @@ class BusinessBankingSlashActivity : ComponentActivity() {
     }
 
     private fun gotoLoginScreen() {
-        val intent = Intent(this, BusinessBankingIntroActivity::class.java)
-        startActivity(intent)
+        Intent(this, BusinessBankingIntroActivity::class.java).apply {
+            startActivity(this)
+        }
         finish()
     }
 
