@@ -2,12 +2,32 @@ package xyz.edsync.business_banking.feature.home.wallet
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,9 +44,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.rememberPagerState
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.ui.theme.*
+import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
+import xyz.edsync.business_banking.ui.theme.ColorBackground
+import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
+import xyz.edsync.business_banking.ui.theme.ColorExpense
+import xyz.edsync.business_banking.ui.theme.ColorIncome
+import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
 import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
@@ -38,7 +62,7 @@ fun WalletContent() {
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 topBar = { TopBar() },
-                backgroundColor = ColorBackground
+                containerColor = ColorBackground
             ) {
                 Content(it)
             }
@@ -121,7 +145,7 @@ private fun SendMoneyToContent() {
                         .width(90.dp)
                         .height(110.dp),
                     shape = RoundedCornerShape(12.dp),
-                    backgroundColor = Color.White
+                    colors = CardDefaults.cardColors(Color.White)
                 ) {
                     Column(
                         modifier = Modifier.fillMaxWidth(),
@@ -171,9 +195,8 @@ private fun AmountContent() {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(10.dp)),
-            backgroundColor = ColorExpense,
             progress = 0.62F,
-            color = ColorIncome,
+            color = ColorIncome
         )
         Spacer(modifier = Modifier.size(16.dp))
         Row(
@@ -250,7 +273,7 @@ private fun ExpenseRowContent() {
 private fun TransactionItem() {
     Card(
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
-        backgroundColor = Color.White,
+        colors = CardDefaults.cardColors(Color.White),
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(
@@ -288,7 +311,7 @@ private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
     TabRow(
         modifier = Modifier.padding(horizontal = 13.dp),
         selectedTabIndex = currentPage1,
-        backgroundColor = Color.Transparent,
+        containerColor = Color.Transparent,
         contentColor = ColorSecondaryText,
         divider = { Divider() },
         indicator = {}
@@ -310,6 +333,7 @@ private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
     Spacer(modifier = Modifier.padding(top = 8.dp))
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar() {
     TopAppBar(title = {
@@ -328,8 +352,6 @@ private fun TopBar() {
         }
     },
         modifier = Modifier.fillMaxWidth(),
-        elevation = 0.dp,
-        backgroundColor = Color.Transparent,
         actions = {
             IconButton(onClick = { }) {
                 Image(

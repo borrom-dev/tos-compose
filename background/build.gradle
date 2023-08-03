@@ -44,7 +44,7 @@ dependencies {
     implementation activityComposeDep
     implementation composeUiDep
     implementation composeUiPreviewDep
-    implementation composeMertialDep
+    implementation composeMaterial3Dep
 
     testImplementation junitDep
     androidTestImplementation junitTestExtDep

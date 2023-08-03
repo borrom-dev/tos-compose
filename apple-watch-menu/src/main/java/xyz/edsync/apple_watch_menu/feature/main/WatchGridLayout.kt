@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import xyz.edsync.apple_watch_menu.feature.main.Icons.appleIcons
-import xyz.edsync.toscompose.theme.TosComposeTheme
+import xyz.edsync.common.util.theme.TosComposeTheme
 
 @Composable
 fun WatchGridLayout(

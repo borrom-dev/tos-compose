@@ -2,17 +2,27 @@ package xyz.edsync.common.util.ui
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.*
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 
 @Composable
 fun TextInputField(
@@ -20,9 +30,7 @@ fun TextInputField(
     valueState: MutableState<String>,
     labelText: String,
     maxLines: Int = 1,
-    colors: TextFieldColors = TextFieldDefaults.textFieldColors(
-        backgroundColor = Color.Transparent
-    ),
+    colors: TextFieldColors = TextFieldDefaults.colors(Color.Transparent),
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         capitalization = KeyboardCapitalization.None,
         imeAction = ImeAction.Next
@@ -58,9 +66,7 @@ fun TextInputPassword(
     labelText: String,
     imeAction: ImeAction = ImeAction.Done,
     maxLength: Int? = null,
-    colors: TextFieldColors = TextFieldDefaults.textFieldColors(
-        backgroundColor = Color.Transparent
-    ),
+    colors: TextFieldColors = TextFieldDefaults.colors(Color.Transparent),
 ) {
     val passwordVisible = rememberSaveable {
         mutableStateOf(false)

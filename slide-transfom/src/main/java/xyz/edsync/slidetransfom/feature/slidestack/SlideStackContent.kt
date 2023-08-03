@@ -3,19 +3,19 @@ package xyz.edsync.slidetransfom.feature.slidestack
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import xyz.edsync.common.util.theme.TosComposeTheme
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.slidetransfom.R
-import xyz.edsync.toscompose.theme.TosComposeTheme
 
 @Composable
 internal fun SlideStackContent() {
@@ -31,6 +31,7 @@ internal fun SlideStackContent() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar() {
     TopAppBar(title = {
@@ -41,8 +42,6 @@ private fun TopBar() {
         )
     },
         modifier = Modifier.fillMaxWidth(),
-        elevation = 0.dp,
-        backgroundColor = Color.Transparent,
         actions = {
         })
 }
