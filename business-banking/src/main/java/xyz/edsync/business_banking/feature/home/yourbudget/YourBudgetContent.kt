@@ -19,10 +19,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -41,10 +43,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,6 +67,10 @@ import xyz.edsync.business_banking.ui.theme.ColorYourBudgetBackground
 import xyz.edsync.business_banking.ui.theme.ColorYourBudgetTitleTopBar
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.DotsIndicator
+
+@Preview()
+@Composable
+fun PreviewHomeContent() = YourBudgetContent()
 
 @Composable
 fun YourBudgetContent(modifier: Modifier = Modifier) {
@@ -94,6 +102,7 @@ private fun BackgroundImage() {
             .background(color = ColorBackground),
         painter = painterResource(R.drawable.bg_your_budget),
         contentDescription = "backgroundImage",
+        contentScale = ContentScale.FillWidth
     )
 }
 
@@ -113,7 +122,9 @@ private fun TopBar() {
         modifier = Modifier.fillMaxWidth(),
         colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
         actions = {
-            IconButton(onClick = { }) {
+            IconButton(onClick = {
+
+            }) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_notification),
                     contentDescription = "Notification"
@@ -137,8 +148,9 @@ private fun Content(paddingValues: PaddingValues) {
     )
     LazyColumn(
         modifier = Modifier
-            .padding(paddingValues)
             .fillMaxSize()
+            .padding(paddingValues)
+            .padding(horizontal = 16.dp)
     ) {
         item {
             Column() {
@@ -169,14 +181,17 @@ private fun TransactionFilterHeader(currentPage: Int, items: Array<String>) {
         selectedTabIndex = currentPage1,
         containerColor = Color.Transparent,
         contentColor = ColorSecondaryText,
-        divider = { Divider() },
+        divider = {},
         indicator = {}
     ) {
         items.forEachIndexed { index, text ->
             Tab(modifier = if (index == currentPage1) Modifier
                 .padding(4.dp)
                 .height(30.dp)
-                .background(color = ColorYourBudgetBackground, shape = RoundedCornerShape(6.dp))
+                .background(
+                    color = ColorYourBudgetBackground,
+                    shape = RoundedCornerShape(6.dp)
+                )
             else Modifier.padding(8.dp),
                 selected = currentPage1 == index,
                 onClick = {
@@ -217,7 +232,10 @@ private fun TransactionItem() {
                 // TODO to update string
                 Column(horizontalAlignment = Alignment.Start) {
                     DefaultText(text = "Shell", style = TextStyle(color = Color.Black))
-                    DefaultText(text = "17 Monday June", style = TextStyle(color = Color.Black))
+                    DefaultText(
+                        text = "17 Monday June",
+                        style = TextStyle(color = Color.Black)
+                    )
                 }
                 DefaultText(text = "-$35,88", style = TextStyle(color = Color.Red))
             }
@@ -283,63 +301,51 @@ private fun ChartSlide(pagerState: PagerState) {
 @Composable
 private fun SendMoneyAndCalculation() {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
-        Card(
-            modifier = Modifier
-                .weight(1F)
-                .height(48.dp),
-            colors = CardDefaults.cardColors(ColorYourBudgetBackground),
-            elevation = CardDefaults.cardElevation(0.dp),
-            shape = RoundedCornerShape(6.dp)
-        ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.Start
-            ) {
-                Row {
-                    Spacer(modifier = Modifier.size(16.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_send_money),
-                        contentDescription = "Icon Facebook"
-                    )
-                    Spacer(modifier = Modifier.size(12.dp))
-                    DefaultText(
-                        text = stringResource(id = R.string.text_send_money),
-                        style = TextStyle(color = ColorPrimary)
-                    )
-                }
-            }
+        val textStyle = TextStyle(color = ColorPrimary, fontSize = 13.sp)
+        Button(modifier = Modifier
+            .weight(1F)
+            .height(48.dp),
+            shape = RoundedCornerShape(6.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = ColorYourBudgetBackground),
+            onClick = {
+
+            }) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_send_money),
+                modifier = Modifier.size(24.dp),
+                contentDescription = "drawable icons",
+                tint = Color.Unspecified
+            )
+            Spacer(modifier = Modifier.size(12.dp))
+            DefaultText(
+                text = stringResource(id = R.string.text_send_money),
+                style = textStyle
+            )
         }
-        Spacer(modifier = Modifier.size(12.dp))
-        Card(
-            modifier = Modifier
-                .weight(1F)
-                .height(48.dp),
-            colors = CardDefaults.cardColors(ColorYourBudgetBackground),
-            elevation = CardDefaults.cardElevation(0.dp),
-            shape = RoundedCornerShape(6.dp)
-        ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.Start
-            ) {
-                Row {
-                    Spacer(modifier = Modifier.size(16.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_calculation),
-                        contentDescription = "Icon Google"
-                    )
-                    Spacer(modifier = Modifier.size(12.dp))
-                    DefaultText(
-                        text = stringResource(id = R.string.text_calculation),
-                        style = TextStyle(color = ColorPrimary)
-                    )
-                }
-            }
+        Spacer(modifier = Modifier.size(6.dp))
+        Button(modifier = Modifier
+            .weight(1F)
+            .height(48.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = ColorYourBudgetBackground),
+            shape = RoundedCornerShape(6.dp),
+            onClick = {
+
+            }) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_calculation),
+                modifier = Modifier.size(24.dp),
+                contentDescription = "drawable icons",
+                tint = Color.Unspecified
+            )
+            Spacer(modifier = Modifier.size(6.dp))
+            DefaultText(
+                text = stringResource(id = R.string.text_calculation),
+                style = textStyle
+            )
         }
     }
 }
@@ -375,7 +381,8 @@ fun ChartProgress(
                     useCenter = false,
                     style = Stroke(width = thickness.toPx(), cap = StrokeCap.Round)
                 )
-                val sweepAngle = (animateNumber.value / dataPlanLimit) * (360f - gapBetweenEnds)
+                val sweepAngle =
+                    (animateNumber.value / dataPlanLimit) * (360f - gapBetweenEnds)
                 drawArc(
                     color = foregroundIndicatorColor,
                     startAngle = startAngle,
@@ -403,7 +410,10 @@ fun ChartProgress(
                 Spacer(modifier = Modifier.size(4.dp))
                 DefaultText(
                     text = "$6,390",
-                    style = TextStyle(color = ColorDarkPrimary, fontWeight = FontWeight.Bold),
+                    style = TextStyle(
+                        color = ColorDarkPrimary,
+                        fontWeight = FontWeight.Bold
+                    ),
                     fontSize = 30.sp
                 )
                 Spacer(modifier = Modifier.size(4.dp))
