@@ -78,9 +78,7 @@ fun WatchGridLayoutPreview() {
             itemSize = 80.dp
         ) {
             appleIcons.forEach { (res, name) ->
-                IconRounded(
-                    res = res
-                )
+                IconRounded(res = res)
             }
         }
     }

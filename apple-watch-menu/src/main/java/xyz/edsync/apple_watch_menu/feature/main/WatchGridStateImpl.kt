@@ -9,7 +9,6 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntOffset
-import xyz.edsync.apple_watch_menu.feature.main.WatchGridStateImpl.Companion.Saver
 
 data class WatchGridStateImpl(
     private val initialOffset: Offset = Offset.Zero
