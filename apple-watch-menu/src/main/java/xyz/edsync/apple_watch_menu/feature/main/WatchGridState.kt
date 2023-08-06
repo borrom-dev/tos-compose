@@ -7,5 +7,7 @@ interface WatchGridState : OffsetState {
     var config: WatchGridConfig
 
     fun getPositionFor(index: Int): IntOffset
+
     fun getScaleFor(position: IntOffset): Float
+
 }

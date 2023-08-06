@@ -32,11 +32,7 @@ class AppleWatchMenuActivity : ComponentActivity() {
                             rowItemsCount = 5,
                             itemSize = 80.dp
                         ) {
-                            appleIcons.forEach { (res, name) ->
-                                IconRounded(
-                                    res = res
-                                )
-                            }
+                            appleIcons.forEach { (res, name) -> IconRounded(res = res) }
                         }
                     }
                 }
