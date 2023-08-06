@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -43,6 +44,10 @@ import xyz.edsync.business_banking.ui.theme.ColorPrimary
 import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
 import xyz.edsync.common.util.theme.TosComposeTheme
 import xyz.edsync.common.util.ui.DefaultText
+
+@Preview()
+@Composable
+fun PreviewHomeContent() = HomeContent()
 
 @Composable
 internal fun HomeContent() {
@@ -75,20 +80,18 @@ private fun Body() {
             shape = RoundedCornerShape(0.dp),
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
-            Box {
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    HorizontalPager(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1F)
-                            .height(0.dp),
-                        count = 4,
-                        state = pagerState,
-                    ) { position ->
-                        HorizontalContents(position = position)
-                    }
-                    TabContent(coroutineScope, pagerState, tabs)
+            Column(modifier = Modifier.fillMaxWidth()) {
+                HorizontalPager(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1F)
+                        .height(0.dp),
+                    count = 4,
+                    state = pagerState,
+                ) { position ->
+                    HorizontalContents(position = position)
                 }
+                TabContent(coroutineScope, pagerState, tabs)
             }
         }
     }

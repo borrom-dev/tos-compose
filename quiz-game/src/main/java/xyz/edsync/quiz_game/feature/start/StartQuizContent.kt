@@ -26,7 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import xyz.edsync.common.util.extension.textSizeResource
 import xyz.edsync.common.util.ui.DefaultText
-import xyz.edsync.common.util.ui.LinesIndicator
+import xyz.edsync.common.util.ui.DotsIndicator
 import xyz.edsync.quiz_game.R
 import xyz.edsync.quiz_game.feature.ui.BackgroundColor
 import xyz.edsync.quiz_game.feature.ui.DetailTextColor
@@ -90,7 +90,7 @@ internal fun StartQuizContent() {
                             )
 
                             Spacer(modifier = Modifier.size(dimensionResource(id = CR.dimen.dp_12)))
-                            LinesIndicator(
+                            DotsIndicator(
                                 totalDots = 3,
                                 selectedIndex = it,
                                 selectedColor = PrimaryColor,
