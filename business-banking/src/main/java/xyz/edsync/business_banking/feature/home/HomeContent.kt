@@ -109,7 +109,10 @@ private fun TabContent(
         TabRow(
             modifier = Modifier.align(Alignment.Center),
             selectedTabIndex = selectedTabIndex,
-            containerColor = Color.White
+            containerColor = Color.White,
+            contentColor = Color.Transparent,
+            divider = {},
+            indicator = {}
         ) {
             tabs.forEachIndexed { index, tabInfo ->
                 Tab(selected = selectedTabIndex == index, onClick = {
@@ -119,7 +122,7 @@ private fun TabContent(
                 }) {
                     if (tabInfo.iconRes != -1) {
                         TabItem(
-                            IconRes = tabInfo.iconRes,
+                            iconRes = tabInfo.iconRes,
                             titleRes = tabInfo.titleRes,
                             selectedTabIndex == index
                         )
@@ -142,7 +145,7 @@ private fun HorizontalContents(position: Int) {
 
 @Composable
 private fun TabItem(
-    @DrawableRes IconRes: Int,
+    @DrawableRes iconRes: Int,
     @StringRes titleRes: Int,
     isSelected: Boolean = false
 ) {
@@ -155,7 +158,7 @@ private fun TabItem(
         val title = stringResource(id = titleRes)
         val color = if (isSelected) ColorPrimary else ColorSecondaryText
         Icon(
-            painter = painterResource(id = IconRes),
+            painter = painterResource(id = iconRes),
             contentDescription = title,
             tint = color
         )
