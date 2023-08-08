@@ -35,7 +35,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorBackground
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
 import xyz.edsync.business_banking.ui.theme.ColorExpense
@@ -45,18 +44,12 @@ import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
 fun ExpenseContent() {
-    BusinessBankingTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Scaffold(
-                modifier = Modifier.fillMaxSize(),
-                topBar = { TopBar() },
-                containerColor = ColorBackground
-            ) {
-                Content(it)
-            }
-        }
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = { TopBar() },
+        containerColor = ColorBackground
+    ) {
+        Content(it)
     }
 }
 

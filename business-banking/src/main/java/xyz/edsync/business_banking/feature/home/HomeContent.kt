@@ -42,7 +42,6 @@ import xyz.edsync.business_banking.feature.home.yourbudget.YourBudgetContent
 import xyz.edsync.business_banking.model.TabInfo
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
 import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
-import xyz.edsync.common.util.theme.TosComposeTheme
 import xyz.edsync.common.util.ui.DefaultText
 
 @Preview()
@@ -51,10 +50,8 @@ fun PreviewHomeContent() = HomeContent()
 
 @Composable
 internal fun HomeContent() {
-    TosComposeTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Body()
-        }
+    Surface(modifier = Modifier.fillMaxSize()) {
+        Body()
     }
 }
 
@@ -75,12 +72,13 @@ private fun Body() {
             .background(color = Color.White)
     ) {
         Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
+            modifier = Modifier
+                .fillMaxSize(),
+            colors = CardDefaults.cardColors(containerColor = Color.Red),
             shape = RoundedCornerShape(0.dp),
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
-            Column(modifier = Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier.fillMaxSize()) {
                 HorizontalPager(
                     modifier = Modifier
                         .fillMaxWidth()

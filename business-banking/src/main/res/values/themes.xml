@@ -2,11 +2,7 @@
 <resources>
 
     <style name="Theme.BusinessBanking" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
-    </style>
-
-    <style name="Theme.TosCompose" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:statusBarColor">@color/primary_color</item>
     </style>
 
 </resources>
