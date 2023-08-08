@@ -48,6 +48,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -316,14 +317,16 @@ private fun SendMoneyAndCalculation() {
             }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_send_money),
-                modifier = Modifier.size(24.dp),
                 contentDescription = "drawable icons",
                 tint = Color.Unspecified
             )
-            Spacer(modifier = Modifier.size(12.dp))
+            Spacer(modifier = Modifier.size(6.dp))
             DefaultText(
+                modifier = Modifier.fillMaxWidth(),
                 text = stringResource(id = R.string.text_send_money),
-                style = textStyle
+                style = textStyle,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
         Spacer(modifier = Modifier.size(6.dp))
@@ -337,14 +340,15 @@ private fun SendMoneyAndCalculation() {
             }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_calculation),
-                modifier = Modifier.size(24.dp),
                 contentDescription = "drawable icons",
                 tint = Color.Unspecified
             )
             Spacer(modifier = Modifier.size(6.dp))
             DefaultText(
                 text = stringResource(id = R.string.text_calculation),
-                style = textStyle
+                style = textStyle,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -365,7 +369,8 @@ fun ChartProgress(
     val gapBetweenEnds = (startAngle - 90) * 2
     val animateNumber = animateFloatAsState(
         targetValue = dataR,
-        animationSpec = tween(durationMillis = animationDuration)
+        animationSpec = tween(durationMillis = animationDuration),
+        label = ""
     )
     LaunchedEffect(Unit) { dataR = data }
     Column(
