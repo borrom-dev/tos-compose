@@ -27,7 +27,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TopAppBar
@@ -58,7 +57,6 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import xyz.edsync.business_banking.R
-import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorBackground
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
 import xyz.edsync.business_banking.ui.theme.ColorPrimary
@@ -69,29 +67,25 @@ import xyz.edsync.business_banking.ui.theme.ColorYourBudgetTitleTopBar
 import xyz.edsync.common.util.ui.DefaultText
 import xyz.edsync.common.util.ui.DotsIndicator
 
-@Preview()
+@Preview
 @Composable
 fun PreviewHomeContent() = YourBudgetContent()
 
 @Composable
 fun YourBudgetContent(modifier: Modifier = Modifier) {
-    BusinessBankingTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = modifier.fillMaxWidth()) {
-                BackgroundImage()
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = ColorBackground)
-                )
-            }
-            Scaffold(
-                topBar = { TopBar() },
-                containerColor = Color.Transparent
-            ) {
-                Content(it)
-            }
-        }
+    Column(modifier = modifier.fillMaxSize()) {
+        BackgroundImage()
+        Spacer(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = ColorBackground)
+        )
+    }
+    Scaffold(
+        topBar = { TopBar() },
+        containerColor = Color.Transparent
+    ) {
+        Content(it)
     }
 }
 

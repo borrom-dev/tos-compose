@@ -21,7 +21,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -38,7 +37,6 @@ import androidx.compose.ui.unit.sp
 import xyz.edsync.business_banking.R
 import xyz.edsync.business_banking.feature.home.profile.model.GroupProfileMenu
 import xyz.edsync.business_banking.feature.home.profile.model.ProfileMenu
-import xyz.edsync.business_banking.ui.theme.BusinessBankingTheme
 import xyz.edsync.business_banking.ui.theme.ColorBackground
 import xyz.edsync.business_banking.ui.theme.ColorDarkPrimary
 import xyz.edsync.business_banking.ui.theme.ColorSecondaryText
@@ -46,24 +44,20 @@ import xyz.edsync.common.util.ui.DefaultText
 
 @Composable
 fun ProfileContent() {
-    BusinessBankingTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxWidth()) {
-                BackgroundImage()
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = ColorBackground)
-                )
-            }
-            Scaffold(
-                modifier = Modifier.fillMaxSize(),
-                topBar = { TopBar() },
-                containerColor = Color.Transparent
-            ) {
-                Content(it)
-            }
-        }
+    Column(modifier = Modifier.fillMaxSize()) {
+        BackgroundImage()
+        Spacer(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = ColorBackground)
+        )
+    }
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = { TopBar() },
+        containerColor = Color.Transparent
+    ) {
+        Content(it)
     }
 }
 
