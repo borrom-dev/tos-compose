@@ -32,13 +32,23 @@ android {
 
 dependencies {
 
+    implementation "org.burnoutcrew.composereorderable:reorderable:0.9.6"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     implementation coreKtxDep
     implementation lifecycleRuntimeKtxDep
-    implementation appcompatDep
-    implementation composeMaterial3Dep
+    implementation activityComposeDep
+    implementation composeUiDep
+    implementation composeUiPreviewDep
+    implementation composeMaterialIconsDep
+    implementation composeMertialDep
 
     testImplementation junitDep
     androidTestImplementation junitTestExtDep
     androidTestImplementation testExpressoCoreDep
+    androidTestImplementation composeUiTestDep
+    debugImplementation composeUiToolDep
+    debugImplementation composeUiTestManifestDep
 
+    // internal module
+    implementation project(':common')
 }

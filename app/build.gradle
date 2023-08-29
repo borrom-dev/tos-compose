@@ -55,6 +55,7 @@ android {
 }
 
 dependencies {
+
     implementation coreKtxDep
     implementation lifecycleRuntimeKtxDep
     implementation activityComposeDep
