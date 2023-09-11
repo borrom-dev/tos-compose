@@ -4,18 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import xyz.edsync.quiz_game.feature.start.StartQuizActivity
+import androidx.compose.foundation.ExperimentalFoundationApi
 import xyz.edsync.apple_watch_menu.feature.main.AppleWatchMenuActivity
 import xyz.edsync.business_banking.feature.splash.BusinessBankingSlashActivity
 import xyz.edsync.common.util.listener.ItemClickListener
+import xyz.edsync.common.util.ui.ImageSlider
+import xyz.edsync.quiz_game.feature.start.StartQuizActivity
 import xyz.edsync.slidetransfom.feature.SlideTransformActivity
 import xyz.edsync.toscompose.R
 
 class MainActivity : ComponentActivity(), ItemClickListener<Int> {
+
+    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ReorderContent()
+            ImageSlider(
+                itemsCount = 10
+
+            )
         }
     }
 
