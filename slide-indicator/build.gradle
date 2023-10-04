@@ -51,6 +51,7 @@ dependencies {
     implementation composeUiPreviewDep
     implementation composeMaterialIconsDep
     implementation composeMaterial3Dep
+    implementation composeMaterialDep
 
     testImplementation junitDep
     androidTestImplementation junitTestExtDep
