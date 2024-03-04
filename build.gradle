@@ -8,6 +8,8 @@ buildscript {
         minSdkVersion = 21
         targetSdkVersion = 33
 
+        jvmTarget = '1.8'
+
         coreKtxVersion = '1.10.1'
         lifecycleRuntimeKtxVersion = "2.6.1"
 
